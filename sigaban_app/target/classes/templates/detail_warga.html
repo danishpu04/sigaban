@@ -190,70 +190,98 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+	</style>
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen flex">
 <!-- SideNavBar -->
-<aside class="bg-surface-container h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-md z-50 md:flex hidden">
-<div class="px-md pb-lg border-b border-outline-variant mb-md">
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-md pb-lg">
 <h1 class="font-headline-sm text-headline-sm font-bold text-primary">SIGABAN</h1>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Disaster Mgmt System</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
 </div>
-<nav class="flex-1 overflow-y-auto px-sm flex flex-col gap-xs">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/dashboard">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<ul class="flex flex-col flex-grow w-full space-y-1">
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/dashboard">
+<span class="material-symbols-outlined mr-md">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-container/10 hover:bg-surface-container-highest transition-colors opacity-80 duration-200" href="/data-warga">
-<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-opacity duration-200 opacity-80" href="/data-warga">
+<span class="material-symbols-outlined mr-md">groups</span>
 <span class="font-label-md text-label-md">Data Warga</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/bantuan">
-<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/bantuan">
+<span class="material-symbols-outlined mr-md">handshake</span>
 <span class="font-label-md text-label-md">Bantuan</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/posko">
-<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/posko">
+<span class="material-symbols-outlined mr-md">location_on</span>
 <span class="font-label-md text-label-md">Posko</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/ai-insight">
-<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/ai-insight">
+<span class="material-symbols-outlined mr-md">psychology</span>
 <span class="font-label-md text-label-md">AI Insight</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/laporan">
-<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/laporan">
+<span class="material-symbols-outlined mr-md">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors mt-auto" href="/pengaturan">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</li>
+<li class="mt-auto pt-lg border-t border-outline-variant">
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
+<span class="material-symbols-outlined mr-md">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-error hover:bg-error/10 transition-colors mt-1" href="/">
+<span class="material-symbols-outlined mr-md">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</li>
+</ul>
 </nav>
-</aside>
 <!-- Main Content Area -->
 <div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen">
 <!-- TopNavBar -->
 <header class="bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant flex justify-between items-center w-full px-lg py-sm">
-<div class="flex items-center gap-md">
-<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-<div class="flex-1 max-w-md mx-lg hidden sm:block">
-<div class="relative flex items-center w-full h-10 rounded-full focus-within:shadow-lg bg-surface-container overflow-hidden">
-<div class="grid place-items-center h-full w-12 text-on-surface-variant">
-<span class="material-symbols-outlined">search</span>
-</div>
-<input class="peer h-full w-full outline-none text-sm text-on-surface bg-transparent pr-2 font-body-sm text-body-sm" id="search" placeholder="Search Data Warga..." type="text"/>
-</div>
+<div class="flex items-center">
+    <button class="md:hidden text-on-surface-variant hover:text-primary transition-colors mr-sm">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <div class="flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary transition-colors w-96">
+        <span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+        <input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Search Data Warga..." type="text"/>
+    </div>
 </div>
 <div class="flex items-center gap-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors relative">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-<span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-error"></span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-</button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+    </button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">account_circle</span>
+    </button>
 </div>
 </header>
 <!-- Page Content -->
@@ -265,14 +293,14 @@
 <p class="font-body-md text-body-md text-on-surface-variant mt-xs">Daftar warga yang telah diregistrasi.</p>
 </div>
 <div class="flex gap-sm w-full sm:w-auto">
-<a href="/form-warga" class="flex-1 sm:flex-none flex items-center justify-center gap-xs px-md py-sm rounded-lg bg-primary-container text-on-primary border border-transparent hover:bg-primary transition-colors font-label-md text-label-md shadow-sm">
+<a href="/form-warga?source=admin" class="flex-1 sm:flex-none flex items-center justify-center gap-xs px-md py-sm rounded-lg bg-primary-container text-on-primary border border-transparent hover:bg-primary transition-colors font-label-md text-label-md shadow-sm">
 <span class="material-symbols-outlined text-[20px]">add</span>
                         Tambah Warga Baru
                     </a>
 </div>
 </div>
 <!-- Warga Loop -->
-<div th:each="warga : ${wargaList}" class="mb-xl">
+<div th:each="warga : ${wargaList}" class="mb-12 pb-12 border-b-[3px] border-outline-variant/50 last:border-b-0">
 <!-- Bento Grid Layout -->
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
 <!-- 1. Personal Info Section (Col span 4) -->
@@ -309,7 +337,7 @@
 <!-- Middle Column: Condition & Evacuation (Col span 8) -->
 <div class="lg:col-span-8 flex flex-col gap-lg">
 <!-- 2. Current Condition -->
-<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md flex flex-col gap-md relative overflow-hidden">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md pb-lg flex flex-col gap-md relative">
 <h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-xs pr-lg">Kondisi Terkini</h3>
 <div class="flex items-center gap-md">
 <span th:if="${warga.health == 'kritis'}" class="px-md py-sm rounded-full bg-error-container/20 text-error font-label-md text-label-md border border-error-container flex items-center gap-xs">
@@ -321,6 +349,14 @@
 <span th:if="${warga.health == 'sehat'}" class="px-md py-sm rounded-full bg-tertiary-container/20 text-tertiary font-label-md text-label-md border border-tertiary-container flex items-center gap-xs">
 <span class="material-symbols-outlined text-[18px]">check_circle</span> Sehat / Aman
 </span>
+</div>
+<div class="mt-sm flex flex-col gap-xs border-t border-outline-variant/50 pt-sm" th:if="${warga.needs != null and !warga.needs.isEmpty()}">
+    <span class="font-label-sm text-label-sm text-on-surface-variant">Kebutuhan Mendesak:</span>
+    <div class="flex flex-wrap gap-xs">
+        <span th:each="need : ${warga.needs}" th:text="${need}" class="px-2 py-1 rounded-md bg-primary-container/10 text-primary font-label-sm text-[11px] border border-primary-container/30">
+            Kebutuhan
+        </span>
+    </div>
 </div>
 </div>
 <!-- 3. Evacuation Info -->
@@ -337,6 +373,15 @@
 </div>
 </div>
 </div>
+</div>
+<!-- Actions: Edit & Delete -->
+<div class="flex gap-sm mt-auto justify-end">
+    <a th:href="@{/edit-warga/{id}(id=${warga.id})}" class="px-md py-sm rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-label-md text-label-md flex items-center gap-xs font-semibold">
+        <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+    </a>
+    <a th:href="@{/delete-warga/{id}(id=${warga.id})}" onclick="return confirm('Apakah Anda yakin ingin menghapus data warga ini?');" class="px-md py-sm rounded-lg bg-error/10 text-error hover:bg-error/20 transition-colors font-label-md text-label-md flex items-center gap-xs font-semibold">
+        <span class="material-symbols-outlined text-[18px]">delete</span> Delete
+    </a>
 </div>
 </div>
 </div>

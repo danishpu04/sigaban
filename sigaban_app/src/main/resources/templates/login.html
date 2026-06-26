@@ -203,7 +203,18 @@
             color: theme('colors.on-surface');
             -webkit-font-smoothing: antialiased;
         }
-    </style>
+            /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+	</style>
 </head>
 <body class="min-h-screen w-full flex bg-surface">
 <!-- Left Side: Branding & Mission (Hidden on Mobile) -->

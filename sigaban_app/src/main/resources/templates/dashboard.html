@@ -202,7 +202,18 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
-    </style>
+            /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+	</style>
 </head>
 <body class="bg-surface text-on-surface font-body-md min-h-screen">
 <!-- SideNavBar -->
@@ -254,23 +265,29 @@
 <span class="font-label-md text-label-md">Settings</span>
 </a>
 </li>
+<li>
+<a class="flex items-center px-md py-sm text-error hover:bg-error/10 transition-colors mt-1" href="/">
+<span class="material-symbols-outlined mr-md">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</li>
 </ul>
 </nav>
 <!-- TopNavBar -->
-<header class="hidden md:flex docked full-width top-0 sticky z-40 border-b border-outline-variant bg-surface flex justify-between items-center w-full px-lg py-sm ml-64 max-w-[calc(100%-16rem)]">
+<header class="hidden md:flex docked top-0 sticky z-40 border-b border-outline-variant bg-surface justify-between items-center px-lg py-sm ml-64 w-[calc(100%-16rem)]">
 <div class="flex items-center">
-<div class="relative w-64 ml-md">
-<span class="material-symbols-outlined absolute left-sm top-1/2 transform -translate-y-1/2 text-outline">search</span>
-<input class="w-full pl-xl pr-sm py-xs border border-outline-variant rounded-md font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-surface-container-lowest" placeholder="Search..." type="text"/>
+    <div class="flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary transition-colors w-96">
+        <span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+        <input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Search aid, shelters, or records..." type="text"/>
+    </div>
 </div>
-</div>
-<div class="flex items-center space-x-md">
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined">account_circle</span>
-</button>
+<div class="flex items-center gap-md">
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+    </button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">account_circle</span>
+    </button>
 </div>
 </header>
 <!-- Main Content Canvas -->
@@ -282,11 +299,11 @@
 <p class="font-body-sm text-body-sm text-on-surface-variant">Live updates and disaster management metrics.</p>
 </div>
 <div class="flex gap-sm">
-<button class="bg-surface-container-lowest border border-primary text-primary px-md py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container/10 transition flex items-center">
+<a href="/export-warga" class="bg-surface-container-lowest border border-primary text-primary px-md py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container/10 transition flex items-center">
 <span class="material-symbols-outlined text-[18px] mr-xs">download</span>
                     Export Data
-                </button>
-<button class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition shadow-sm flex items-center">
+                </a>
+<button onclick="alert('Peringatan Darurat Telah Dikirimkan ke Seluruh Posko dan Warga!')" class="bg-primary text-on-primary px-md py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition shadow-sm flex items-center">
 <span class="material-symbols-outlined text-[18px] mr-xs">campaign</span>
                     Issue Alert
                 </button>
@@ -301,7 +318,7 @@
 <span class="material-symbols-outlined text-outline">group</span>
 </div>
 <div class="flex items-baseline gap-xs">
-<span class="font-headline-lg text-headline-lg font-bold text-on-surface">5,420</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface" th:text="${totalWarga != null ? totalWarga : 0}">5,420</span>
 <span class="font-label-sm text-label-sm text-error flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
 </div>
 </div>
@@ -312,7 +329,7 @@
 <span class="material-symbols-outlined text-outline">family_restroom</span>
 </div>
 <div class="flex items-baseline gap-xs">
-<span class="font-headline-lg text-headline-lg font-bold text-on-surface">1,230</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface" th:text="${jumlahKeluarga != null ? jumlahKeluarga : 0}">1,230</span>
 </div>
 </div>
 <!-- Stat Card 3 -->
@@ -322,7 +339,7 @@
 <span class="material-symbols-outlined text-outline">map</span>
 </div>
 <div class="flex items-baseline gap-xs">
-<span class="font-headline-lg text-headline-lg font-bold text-on-surface">8</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface" th:text="${wilayahTerdampak != null ? wilayahTerdampak : 0}">8</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">Kecamatan</span>
 </div>
 </div>
@@ -395,18 +412,18 @@
 <!-- Bar Chart Card -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col">
 <div class="flex justify-between items-center mb-md">
-<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Aid Distribution by Region</h3>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Sebaran Warga per Wilayah</h3>
 <button class="text-outline hover:text-on-surface transition-colors">
 <span class="material-symbols-outlined">more_vert</span>
 </button>
 </div>
 <!-- Bar Chart Placeholder -->
 <div class="w-full h-48 flex items-end justify-around gap-sm px-sm border-b border-outline-variant/30 pb-xs">
-<div class="w-full bg-primary/20 rounded-t-md h-[40%] relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant">40%</div></div>
-<div class="w-full bg-primary/20 rounded-t-md h-[75%] relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant">75%</div></div>
-<div class="w-full bg-primary rounded-t-md h-[90%] relative group cursor-pointer shadow-sm"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant text-primary font-bold">90%</div></div>
-<div class="w-full bg-primary/20 rounded-t-md h-[30%] relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant">30%</div></div>
-<div class="w-full bg-primary/20 rounded-t-md h-[60%] relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant">60%</div></div>
+<div th:style="'height: ' + ${pctJaktim} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJaktim} + '%'">0%</div></div>
+<div th:style="'height: ' + ${pctJaksel} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJaksel} + '%'">0%</div></div>
+<div th:style="'height: ' + ${pctJakut} + '%'" class="w-full bg-primary rounded-t-md relative group cursor-pointer shadow-sm"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant text-primary font-bold" th:text="${pctJakut} + '%'">0%</div></div>
+<div th:style="'height: ' + ${pctJakbar} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJakbar} + '%'">0%</div></div>
+<div th:style="'height: ' + ${pctPusat} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctPusat} + '%'">0%</div></div>
 </div>
 <div class="flex justify-around mt-sm font-label-sm text-label-sm text-outline truncate">
 <span class="truncate w-12 text-center">Jaktim</span>
@@ -419,31 +436,12 @@
 </div>
 <!-- Right Column: AI & Table -->
 <div class="lg:col-span-1 space-y-lg">
-<!-- AI Insight Panel -->
-<div class="border border-primary/20 rounded-xl p-md flex flex-col ai-gradient ai-glow relative overflow-hidden">
-<div class="absolute top-0 right-0 p-sm opacity-10">
-<span class="material-symbols-outlined text-[64px] text-primary">psychology</span>
-</div>
-<div class="flex items-center gap-sm mb-sm relative z-10">
-<div class="bg-primary/10 p-xs rounded-full">
-<span class="material-symbols-outlined text-primary text-[20px] font-variation-settings-'FILL'-1">auto_awesome</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-primary">AI Rekomendasi Prioritas</h3>
-</div>
-<p class="font-body-md text-body-md text-on-surface mb-md relative z-10">
-                        Wilayah <strong>Kelapa Gading</strong> membutuhkan logistik mendesak dalam <strong>3 jam ke depan</strong> akibat proyeksi kenaikan debit air.
-                    </p>
-<div class="mt-auto relative z-10 flex gap-sm">
-<button class="bg-primary text-on-primary px-sm py-xs rounded font-label-sm text-label-sm hover:bg-primary-container transition shadow-sm w-full text-center">
-                            Deploy Team
-                        </button>
-</div>
-</div>
+
 <!-- Recent Data Table (Mini) -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col">
 <div class="flex justify-between items-center mb-md">
 <h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Laporan Warga</h3>
-<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">View All</a>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="/data-warga">View All</a>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left border-collapse">
@@ -455,41 +453,19 @@
 </tr>
 </thead>
 <tbody class="font-body-sm text-body-sm">
-<tr class="border-b border-outline-variant/20 hover:bg-surface-container-lowest transition-colors">
-<td class="py-sm px-sm font-semibold text-on-surface">Jl. Pegangsaan Dua</td>
-<td class="py-sm px-sm text-on-surface-variant">10m ago</td>
+<tr th:each="warga : ${laporanWarga}" class="border-b border-outline-variant/20 hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-sm font-semibold text-on-surface" th:text="${warga.address != null ? (warga.address.length() > 20 ? warga.address.substring(0, 20) + '...' : warga.address) : 'No Address'}">Lokasi</td>
+<td class="py-sm px-sm text-on-surface-variant" th:text="${warga.nama}">Nama</td>
 <td class="py-sm px-sm text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-error/15 text-error">
-                                            Darurat
-                                        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold"
+      th:classappend="${warga.health == 'kritis' ? 'bg-error/15 text-error' : 'bg-tertiary/15 text-tertiary'}"
+      th:text="${warga.health != null ? #strings.capitalize(warga.health) : 'Aman'}">
+    Status
+</span>
 </td>
 </tr>
-<tr class="border-b border-outline-variant/20 hover:bg-surface-container-lowest transition-colors">
-<td class="py-sm px-sm font-semibold text-on-surface">Komp. Gading Arcadia</td>
-<td class="py-sm px-sm text-on-surface-variant">32m ago</td>
-<td class="py-sm px-sm text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-error/15 text-error">
-                                            Darurat
-                                        </span>
-</td>
-</tr>
-<tr class="border-b border-outline-variant/20 hover:bg-surface-container-lowest transition-colors">
-<td class="py-sm px-sm font-semibold text-on-surface">Sunter Agung</td>
-<td class="py-sm px-sm text-on-surface-variant">1h ago</td>
-<td class="py-sm px-sm text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-tertiary/15 text-tertiary">
-                                            Aman
-                                        </span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-lowest transition-colors">
-<td class="py-sm px-sm font-semibold text-on-surface">Pluit Permai</td>
-<td class="py-sm px-sm text-on-surface-variant">2h ago</td>
-<td class="py-sm px-sm text-right">
-<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-tertiary/15 text-tertiary">
-                                            Aman
-                                        </span>
-</td>
+<tr th:if="${#lists.isEmpty(laporanWarga)}">
+    <td colspan="3" class="text-center py-sm px-sm text-on-surface-variant">Belum ada laporan.</td>
 </tr>
 </tbody>
 </table>
@@ -499,7 +475,7 @@
 </div>
 </main>
 <!-- Footer -->
-<footer class="w-full py-md ml-64 border-t border-outline-variant bg-surface-container-lowest flex flex-row justify-between items-center px-lg hidden md:flex">
+<footer class="w-[calc(100%-16rem)] py-md ml-64 border-t border-outline-variant bg-surface-container-lowest flex flex-row justify-between items-center px-lg hidden md:flex">
 <div>
 <span class="font-label-md text-label-md font-bold text-on-surface">SIGABAN</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant ml-sm">© 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir</span>

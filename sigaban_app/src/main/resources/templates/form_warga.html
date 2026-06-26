@@ -117,77 +117,95 @@
         .ai-glow {
             box-shadow: inset 0 0 10px rgba(0, 86, 179, 0.1);
         }
-    </style>
+            /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+	</style>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased overflow-hidden flex h-screen">
 <!-- SideNavBar -->
-<nav class="bg-surface-container dark:bg-surface-container-high h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col py-md z-50">
-<!-- Brand -->
-<div class="px-md mb-xl flex items-center gap-sm">
-<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">S</div>
-<div>
-<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">SIGABAN</h1>
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-md pb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">SIGABAN</h1>
 <p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
 </div>
-</div>
-<!-- Navigation Links -->
-<div class="flex-1 px-sm flex flex-col gap-xs">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/dashboard">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<ul class="flex flex-col flex-grow w-full space-y-1">
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/dashboard">
+<span class="material-symbols-outlined mr-md">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10 Active: opacity-80 transition-opacity duration-200" href="/data-warga">
-<span class="material-symbols-outlined" data-icon="groups" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-opacity duration-200 opacity-80" href="/data-warga">
+<span class="material-symbols-outlined mr-md">groups</span>
 <span class="font-label-md text-label-md">Data Warga</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/bantuan">
-<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/bantuan">
+<span class="material-symbols-outlined mr-md">handshake</span>
 <span class="font-label-md text-label-md">Bantuan</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/posko">
-<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/posko">
+<span class="material-symbols-outlined mr-md">location_on</span>
 <span class="font-label-md text-label-md">Posko</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/ai-insight">
-<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/ai-insight">
+<span class="material-symbols-outlined mr-md">psychology</span>
 <span class="font-label-md text-label-md">AI Insight</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/laporan">
-<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/laporan">
+<span class="material-symbols-outlined mr-md">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors mt-auto" href="/pengaturan">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</li>
+<li class="mt-auto pt-lg border-t border-outline-variant">
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
+<span class="material-symbols-outlined mr-md">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
-</div>
+</li>
+</ul>
 </nav>
 <!-- Main Content Area -->
 <div class="flex-1 flex flex-col h-full ml-64 overflow-y-auto bg-surface relative">
 <!-- TopNavBar -->
 <header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-lg py-sm">
-<div class="flex items-center gap-md">
-<!-- Search Bar on_left -->
-<div class="relative flex items-center">
-<span class="material-symbols-outlined absolute left-sm text-outline" data-icon="search">search</span>
-<input class="pl-xl pr-sm py-xs bg-surface-container-lowest border border-outline-variant rounded-full font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Cari NIK atau Nama..." type="text"/>
+<div class="flex items-center">
+    <div class="flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary transition-colors w-96">
+        <span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+        <input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Cari NIK atau Nama..." type="text"/>
+    </div>
 </div>
-</div>
 <div class="flex items-center gap-md">
-<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-xs rounded-full hover:bg-surface-container-highest">
-<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
-</button>
-<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-xs rounded-full hover:bg-surface-container-highest flex items-center gap-sm">
-<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
-<span class="font-label-md text-label-md hidden md:inline">Admin Pusat</span>
-</button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+    </button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">account_circle</span>
+    </button>
 </div>
 </header>
 <!-- Form Canvas -->
 <main class="flex-1 p-lg pb-xl">
 <!-- Breadcrumb & Header -->
 <div class="mb-lg max-w-6xl mx-auto">
-<a class="inline-flex items-center gap-xs text-outline hover:text-primary transition-colors font-label-sm text-label-sm mb-xs" href="#">
+<a class="inline-flex items-center gap-xs text-outline hover:text-primary transition-colors font-label-sm text-label-sm mb-xs" href="/data-warga">
 <span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
                     Kembali ke Daftar Warga
                 </a>
@@ -195,7 +213,9 @@
 <p class="font-body-md text-body-md text-on-surface-variant mt-xs">Masukkan informasi detail warga terdampak untuk keperluan evakuasi dan logistik.</p>
 </div>
 <!-- Bento Form Grid -->
-<form action="/form-warga" method="POST" class="max-w-6xl mx-auto grid grid-cols-12 gap-lg">
+<form action="/form-warga" method="POST" class="max-w-6xl mx-auto grid grid-cols-12 gap-lg" th:object="${warga}">
+<input type="hidden" th:field="*{id}" th:if="${warga.id != null}" />
+<input type="hidden" name="source" th:value="${source}" />
 <!-- Left Column: Primary Data -->
 <div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
 <!-- Card 1: Informasi Personal -->
@@ -208,23 +228,23 @@
 <!-- NIK (with error state example) -->
 <div class="col-span-1 md:col-span-2">
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="nik">Nomor Induk Kependudukan (NIK) <span class="text-error">*</span></label>
-<input class="w-full bg-surface-container-lowest border border-error rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-error/20 transition-all" id="nik" name="nik" placeholder="16 Digit NIK" type="text" value="320101"/>
+<input class="w-full bg-surface-container-lowest border border-error rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-error/20 transition-all" th:field="*{nik}" placeholder="16 Digit NIK" type="text" />
 </div>
 <!-- Nama Lengkap -->
 <div class="col-span-1 md:col-span-2">
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="nama">Nama Lengkap <span class="text-error">*</span></label>
-<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="nama" name="nama" placeholder="Sesuai KTP" type="text"/>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{nama}" placeholder="Sesuai KTP" type="text"/>
 </div>
 <!-- No HP -->
 <div>
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="phone">Nomor Telepon/HP</label>
-<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="phone" name="phone" placeholder="08xx-xxxx-xxxx" type="tel"/>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{phone}" placeholder="08xx-xxxx-xxxx" type="tel"/>
 </div>
 <!-- Jumlah Anggota Keluarga -->
 <div>
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="family">Anggota Keluarga Bersama</label>
 <div class="flex items-center gap-sm">
-<input class="w-24 bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="family" min="0" name="family" placeholder="0" type="number"/>
+<input class="w-24 bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{family}" min="0" placeholder="0" type="number"/>
 <span class="font-body-sm text-body-sm text-outline">Orang (diluar kepala keluarga)</span>
 </div>
 </div>
@@ -239,7 +259,7 @@
 <div class="grid grid-cols-1 gap-md">
 <div>
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="address">Alamat Saat Ini (Lokasi Bencana) <span class="text-error">*</span></label>
-<textarea class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none" id="address" name="address" placeholder="Detail jalan, RT/RW, kelurahan..." rows="3"></textarea>
+<textarea class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none" th:field="*{address}" placeholder="Detail jalan, RT/RW, kelurahan..." rows="3"></textarea>
 </div>
 <!-- Map Area (Omitted for brevity, assuming standard setup) -->
 <div class="relative h-48 w-full bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
@@ -248,7 +268,7 @@
 <!-- Evacuation Destination -->
 <div>
 <label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="evacPoint">Rencana / Posko Evakuasi</label>
-<select class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none" id="evacPoint" name="evacPoint">
+<select class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none" th:field="*{evacPoint}">
 <option disabled="" selected="" value="">Pilih Posko Terdekat...</option>
 <option value="Posko Utama Balai Kota">Posko Utama Balai Kota (Kapasitas: Tersedia)</option>
 <option value="Posko Darurat SD 01">Posko Darurat SD 01 (Kapasitas: Penuh)</option>
@@ -282,16 +302,16 @@
 <label class="font-label-md text-label-md text-on-surface-variant mb-sm block">Kondisi Saat Ini <span class="text-error">*</span></label>
 <div class="flex flex-col gap-sm">
 <label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-low border-tertiary">
-<input checked="" class="text-tertiary focus:ring-tertiary" name="health" type="radio" value="sehat"/>
+<input class="text-tertiary focus:ring-tertiary" th:field="*{health}" type="radio" value="sehat"/>
 <span class="font-body-md text-body-md text-on-surface flex-1">Sehat / Aman</span>
 <span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
 </label>
 <label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-secondary focus:ring-secondary" name="health" type="radio" value="sakit_ringan"/>
+<input class="text-secondary focus:ring-secondary" th:field="*{health}" type="radio" value="sakit_ringan"/>
 <span class="font-body-md text-body-md text-on-surface flex-1">Sakit Ringan</span>
 </label>
 <label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors">
-<input class="text-error focus:ring-error" name="health" type="radio" value="kritis"/>
+<input class="text-error focus:ring-error" th:field="*{health}" type="radio" value="kritis"/>
 <span class="font-body-md text-body-md text-on-surface flex-1 font-semibold text-error">Butuh Medis Segera</span>
 <span class="material-symbols-outlined text-error" data-icon="emergency">emergency</span>
 </label>
@@ -302,27 +322,27 @@
 <label class="font-label-md text-label-md text-on-surface-variant mb-sm block">Kebutuhan Mendesak</label>
 <div class="grid grid-cols-2 gap-sm">
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Makanan Instan"/>
 <span class="font-body-sm text-body-sm text-on-surface">Makanan Instan</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Air Bersih"/>
 <span class="font-body-sm text-body-sm text-on-surface">Air Bersih</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Obat-obatan"/>
 <span class="font-body-sm text-body-sm text-on-surface">Obat-obatan</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Pakaian Bersih"/>
 <span class="font-body-sm text-body-sm text-on-surface">Pakaian Bersih</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Selimut / Alas"/>
 <span class="font-body-sm text-body-sm text-on-surface">Selimut / Alas</span>
 </label>
 <label class="flex items-center gap-xs cursor-pointer group">
-<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" th:field="*{needs}" type="checkbox" value="Kebutuhan Bayi"/>
 <span class="font-body-sm text-body-sm text-on-surface">Kebutuhan Bayi</span>
 </label>
 </div>
@@ -331,9 +351,9 @@
 </div>
 <!-- Form Actions (Footer) -->
 <div class="col-span-12 flex justify-end gap-md pt-md border-t border-outline-variant mt-sm">
-<button class="px-lg py-sm font-label-md text-label-md text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors" type="button">
+<a href="javascript:history.back()" class="px-lg py-sm font-label-md text-label-md text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors inline-flex items-center justify-center">
                         Batal
-                    </button>
+                    </a>
 <button class="px-lg py-sm font-label-md text-label-md text-on-primary bg-primary rounded-lg hover:bg-primary/90 shadow-sm transition-all flex items-center gap-sm" type="submit">
 <span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
                         Simpan Data

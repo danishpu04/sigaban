@@ -143,70 +143,79 @@
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased flex">
 <!-- SideNavBar -->
-<nav class="bg-surface-container h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-md z-50">
-<!-- Brand Header -->
-<div class="px-md pb-lg mb-sm border-b border-outline-variant/50">
-<div class="flex items-center gap-sm">
-<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
-<span class="material-symbols-outlined fill text-[20px]">flood</span>
-</div>
-<div>
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant flex flex-col h-full py-md z-50">
+<div class="px-md pb-lg">
 <h1 class="font-headline-sm text-headline-sm font-bold text-primary">SIGABAN</h1>
-<p class="font-label-sm text-label-sm text-on-surface-variant font-normal">Disaster Mgmt System</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
 </div>
-</div>
-</div>
-<!-- Navigation Links -->
-<div class="flex flex-col h-full py-md px-sm gap-xs overflow-y-auto">
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
-<span class="material-symbols-outlined">dashboard</span>
+<ul class="flex flex-col flex-grow w-full space-y-1">
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/dashboard">
+<span class="material-symbols-outlined mr-md">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
-<span class="material-symbols-outlined">groups</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/data-warga">
+<span class="material-symbols-outlined mr-md">groups</span>
 <span class="font-label-md text-label-md">Data Warga</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
-<span class="material-symbols-outlined">handshake</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/bantuan">
+<span class="material-symbols-outlined mr-md">handshake</span>
 <span class="font-label-md text-label-md">Bantuan</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
-<span class="material-symbols-outlined">location_on</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/posko">
+<span class="material-symbols-outlined mr-md">location_on</span>
 <span class="font-label-md text-label-md">Posko</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
-<span class="material-symbols-outlined">psychology</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/ai-insight">
+<span class="material-symbols-outlined mr-md">psychology</span>
 <span class="font-label-md text-label-md">AI Insight</span>
 </a>
-<!-- ACTIVE TAB -->
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-container/10 hover:bg-surface-container-highest transition-colors opacity-80 duration-200" href="#">
-<span class="material-symbols-outlined fill">assessment</span>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-opacity duration-200 opacity-80" href="/laporan">
+<span class="material-symbols-outlined mr-md">assessment</span>
 <span class="font-label-md text-label-md">Reports</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors mt-auto" href="#">
-<span class="material-symbols-outlined">settings</span>
+</li>
+<li class="mt-auto pt-lg border-t border-outline-variant">
+<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
+<span class="material-symbols-outlined mr-md">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
-</div>
+</li>
+<li>
+<a class="flex items-center px-md py-sm text-error hover:bg-error/10 transition-colors mt-1" href="/">
+<span class="material-symbols-outlined mr-md">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</li>
+</ul>
 </nav>
 <!-- Main Content Wrapper -->
 <div class="flex-1 ml-64 flex flex-col min-h-screen">
 <!-- TopNavBar -->
 <header class="bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant flex justify-between items-center w-full px-lg py-sm max-w-full">
-<div class="flex items-center gap-md flex-1">
-<!-- Search on left per JSON -->
-<div class="relative w-full max-w-md hidden md:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
-<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:border-primary focus:bg-surface transition-colors" placeholder="Search reports..." type="text"/>
+<div class="flex items-center">
+    <div class="flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary transition-colors w-96">
+        <span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+        <input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Search reports..." type="text"/>
+    </div>
 </div>
-</div>
-<div class="flex items-center gap-sm">
-<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">account_circle</span>
-</button>
+<div class="flex items-center gap-md">
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">notifications</span>
+    </button>
+    <button class="text-on-surface-variant hover:text-primary transition-colors">
+        <span class="material-symbols-outlined">account_circle</span>
+    </button>
 </div>
 </header>
 <!-- Canvas Area -->

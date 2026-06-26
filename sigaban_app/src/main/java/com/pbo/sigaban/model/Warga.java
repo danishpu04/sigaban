@@ -1,6 +1,11 @@
 package com.pbo.sigaban.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Column;
+import java.util.List;
+import java.util.ArrayList;import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +27,10 @@ public class Warga {
     private String evacPoint;
     private String health;
 
+    @ElementCollection
+    @CollectionTable(name = "warga_needs", joinColumns = @JoinColumn(name = "warga_id"))
+    @Column(name = "need")
+    private List<String> needs = new ArrayList<>();
     public Warga() {
     }
 
@@ -98,5 +107,13 @@ public class Warga {
 
     public void setHealth(String health) {
         this.health = health;
+    }
+
+    public List<String> getNeeds() {
+        return needs;
+    }
+
+    public void setNeeds(List<String> needs) {
+        this.needs = needs;
     }
 }
