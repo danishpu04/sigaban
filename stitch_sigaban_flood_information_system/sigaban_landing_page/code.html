@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIGABAN - Sistem Informasi Warga Terdampak Banjir</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#ffdbc8",
+                      "surface-tint": "#115cb9",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-surface-variant": "#424752",
+                      "on-secondary-container": "#5f2a00",
+                      "primary": "#003f87",
+                      "surface-bright": "#f8f9fa",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary": "#004c17",
+                      "on-background": "#191c1d",
+                      "tertiary-fixed": "#83fc8e",
+                      "on-primary-container": "#bbd0ff",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-dim": "#d9dadb",
+                      "background": "#f8f9fa",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-surface": "#191c1d",
+                      "on-primary-fixed": "#001a40",
+                      "surface-container": "#edeeef",
+                      "primary-fixed": "#d7e2ff",
+                      "secondary-container": "#ff8016",
+                      "secondary-fixed-dim": "#ffb68a",
+                      "on-tertiary-fixed-variant": "#00531a",
+                      "on-tertiary-container": "#6fe87c",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "primary-container": "#0056b3",
+                      "on-tertiary-fixed": "#002106",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#321300",
+                      "tertiary-container": "#006722",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#66df75",
+                      "primary-fixed-dim": "#acc7ff",
+                      "outline-variant": "#c2c6d4",
+                      "outline": "#727784",
+                      "inverse-primary": "#acc7ff",
+                      "on-secondary-fixed-variant": "#743500",
+                      "secondary": "#984700",
+                      "surface-container-low": "#f3f4f5",
+                      "on-primary-fixed-variant": "#004491",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "margin-desktop": "32px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "margin-mobile": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "body-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-glow {
+            box-shadow: inset 0 0 20px rgba(0, 86, 179, 0.1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- Public Header -->
+<header class="w-full bg-surface/95 backdrop-blur-md border-b border-outline-variant sticky top-0 z-50 px-lg py-md flex justify-between items-center transition-all duration-300">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary tracking-tight">SIGABAN</span>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-primary font-bold" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Public Data</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Emergency Contacts</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="hidden md:flex items-center gap-xs px-md py-sm border border-primary text-primary rounded bg-transparent hover:bg-primary-container/10 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">login</span>
+                Login Petugas
+            </button>
+<button class="flex items-center gap-xs px-md py-sm bg-error text-on-error rounded hover:opacity-90 shadow-sm transition-all font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+                Lapor Kondisi
+            </button>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative w-full min-h-[819px] flex flex-col justify-center items-center px-lg py-xl overflow-hidden">
+<!-- Subtle Background Graphic -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none flex items-center justify-center">
+<div class="w-[800px] h-[800px] rounded-full border-[1px] border-primary-fixed-dim absolute animate-pulse" style="animation-duration: 4s;"></div>
+<div class="w-[600px] h-[600px] rounded-full border-[1px] border-primary-fixed-dim absolute animate-pulse" style="animation-duration: 4.5s; animation-delay: 0.5s;"></div>
+</div>
+<div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-xl items-center relative z-10">
+<!-- Hero Content -->
+<div class="col-span-1 lg:col-span-7 flex flex-col items-start gap-md">
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-error-container text-on-error-container rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">sensors</span>
+<span>Sistem Siaga Aktif</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight max-w-2xl">
+                        Sistem Informasi Warga <span class="text-primary">Terdampak Banjir</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Platform manajemen bencana terintegrasi. Mengkoordinasikan evakuasi, memantau level air secara real-time, dan mendistribusikan logistik dengan presisi berbasis AI untuk respons yang lebih cepat dan terukur.
+                    </p>
+<div class="flex flex-wrap items-center gap-md pt-sm">
+<button class="px-lg py-md bg-primary text-on-primary rounded shadow-sm hover:shadow-md hover:-translate-y-[1px] transition-all font-label-md text-label-md flex items-center gap-sm">
+                            Lihat Peta Banjir
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="px-lg py-md bg-surface text-on-surface border border-outline-variant rounded shadow-sm hover:bg-surface-container-low transition-colors font-label-md text-label-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+                            Hubungi Posko
+                        </button>
+</div>
+</div>
+<!-- Hero Visual / Stats Context -->
+<div class="col-span-1 lg:col-span-5 w-full relative">
+<div class="w-full aspect-square rounded-xl overflow-hidden relative shadow-lg border border-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A highly professional top-down aerial map interface showing a river system in a modern light-mode UI. The map uses a sophisticated corporate palette of soft whites and light grays, with precise vibrant blue overlays indicating flood zones and safe routes. Sharp, minimalist UI elements and markers float above the map. The mood is highly organized, authoritative, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuApYZERiFpUvkMaWcfdZ_cKUAyONQ1H2hBODbmP_dnijBTkUANo0BbzYoT05iEtthqzCK3ihU14ijr-m5bnqvwIV0w1-_hIWLBchkC9AV2nTusCznjmby-Rg8G_KuOvr7sy-OZ6VyiBvvSnEBfUHQ_U86YwDq6YetcGyvmEPNVvBZQYD4mbRCFtM7X5zvnRQtdxAHqA_1mbSDxZH9lT67oxhAWyl07nloHLn-aA6prhgrW57H5i9xfLHkfQZ-MkM0AOUsml-Vvar_Wl"/>
+<!-- Floating Glass UI element -->
+<div class="absolute bottom-md left-md right-md glass-panel rounded-lg p-md border border-white/40 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status Siaga</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold">Siaga 1 (Awas)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Banner -->
+<section class="w-full bg-surface-container-lowest border-y border-outline-variant py-xl px-lg">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-lg divide-y md:divide-y-0 md:divide-x divide-outline-variant">
+<div class="flex flex-col items-center justify-center text-center py-md px-md">
+<span class="material-symbols-outlined text-primary text-[32px] mb-xs">group</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">12,450</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mt-xs">Total Affected</p>
+</div>
+<div class="flex flex-col items-center justify-center text-center py-md px-md">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-xs">home_work</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">48</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mt-xs">Shelters Active</p>
+</div>
+<div class="flex flex-col items-center justify-center text-center py-md px-md">
+<span class="material-symbols-outlined text-tertiary text-[32px] mb-xs">local_shipping</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface font-bold">85%</h3>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mt-xs">Logistics Distributed</p>
+</div>
+</div>
+</section>
+<!-- Key Features Section (Bento Grid) -->
+<section class="w-full py-xl px-lg bg-surface">
+<div class="max-w-6xl mx-auto flex flex-col gap-xl">
+<div class="text-center max-w-2xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Kapabilitas Sistem</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Infrastruktur digital handal untuk memonitor, menganalisa, dan merespons kondisi darurat banjir secara komprehensif.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] gap-md">
+<!-- Feature 1: Real-time Data (Large Span) -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10 w-full md:w-2/3">
+<div class="w-12 h-12 rounded bg-primary-container/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-primary text-[24px]">monitoring</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-xs">Real-time Data Monitoring</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pemantauan ketinggian air, curah hujan, dan status pintu air secara live terintegrasi dengan sensor IoT di lapangan.</p>
+</div>
+<div class="absolute -bottom-10 -right-10 w-2/3 h-full opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+<img class="w-full h-full object-contain object-bottom right-0 absolute" data-alt="A clean, minimalist UI dashboard widget showing a real-time line chart monitoring water levels. The chart uses a soft blue gradient fill on a pristine white background with subtle gray grid lines. The aesthetic is corporate modern, highly legible, and authoritative, fitting a light-mode disaster management system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1d1KoSiFBp38q1ndHhNGIpiV9sHJzAGYirGHItq6_-k-BhZ_5srGi7Dh8TaO2RWiGxxfFbhd-m3sjPIY2tBg_dk0QZtajyVggEOimEEgPU9--mDaYrf8sVUWpXuexZrfA8dAOEtU21aZHepwyPEgkqs-R7j5Oh-NuWuW2ssUK64bOSDZeypvmrisknxtPS07qVMYXm1xihbF8Di1HH0_IdJebpsvVf7FSQbbxL6qi72BZ1KJcmMzD46AzlfjUR2sRh_6Lma25RnKS"/>
+</div>
+</div>
+<!-- Feature 2: AI Assistance (Glassmorphic / Glow) -->
+<div class="md:col-span-4 bg-gradient-to-br from-white to-primary-fixed/30 border border-primary-fixed-dim rounded-xl p-lg flex flex-col justify-between ai-glow relative overflow-hidden">
+<div class="absolute top-0 right-0 p-md">
+<span class="material-symbols-outlined text-primary opacity-50 text-[32px]">auto_awesome</span>
+</div>
+<div>
+<div class="w-12 h-12 rounded bg-white shadow-sm flex items-center justify-center mb-md relative z-10">
+<span class="material-symbols-outlined text-primary text-[24px]">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-xs relative z-10">AI Assistance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">Prediksi perluasan area banjir dan rekomendasi rute evakuasi berbasis machine learning untuk meminimalisir risiko.</p>
+</div>
+<div class="mt-md px-sm py-xs bg-white/60 backdrop-blur border border-white rounded inline-flex items-center gap-xs text-primary font-label-sm text-label-sm w-max relative z-10">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                            Generating Insight...
+                        </div>
+</div>
+<!-- Feature 3: Integrated Logistics -->
+<div class="md:col-span-12 bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col md:flex-row items-center gap-lg">
+<div class="w-full md:w-1/2 flex flex-col items-start">
+<div class="w-12 h-12 rounded bg-tertiary-container/10 flex items-center justify-center mb-md">
+<span class="material-symbols-outlined text-tertiary text-[24px]">inventory_2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-xs">Integrated Logistics Management</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">Lacak ketersediaan bantuan, makanan, dan peralatan medis di setiap posko pengungsian. Memastikan distribusi tepat sasaran secara transparan.</p>
+<a class="text-primary font-label-md text-label-md hover:underline flex items-center gap-xs" href="#">
+                                Pelajari Alur Distribusi <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+</a>
+</div>
+<div class="w-full md:w-1/2 h-full min-h-[200px] rounded-lg bg-surface border border-outline-variant flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#003f87 1px, transparent 1px); background-size: 16px 16px;"></div>
+<!-- Abstract Representation of Logistics -->
+<div class="relative z-10 flex gap-md">
+<div class="w-24 h-32 bg-white shadow-sm border border-outline-variant rounded p-sm flex flex-col gap-xs">
+<div class="w-full h-1/2 bg-surface-container rounded"></div>
+<div class="w-3/4 h-2 bg-outline-variant rounded mt-auto"></div>
+<div class="w-1/2 h-2 bg-outline-variant rounded"></div>
+</div>
+<div class="w-24 h-32 bg-white shadow-sm border border-outline-variant rounded p-sm flex flex-col gap-xs translate-y-4">
+<div class="w-full h-1/2 bg-primary/20 rounded flex items-center justify-center"><span class="material-symbols-outlined text-primary text-[20px]">check_circle</span></div>
+<div class="w-3/4 h-2 bg-outline-variant rounded mt-auto"></div>
+<div class="w-1/2 h-2 bg-outline-variant rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component from JSON -->
+<footer class="w-full py-md bg-surface-container-lowest border-t border-outline-variant flex flex-row justify-between items-center px-lg mt-auto">
+<div class="font-label-md text-label-md font-bold text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">water_drop</span>
+            SIGABAN
+        </div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">
+            © 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir
+        </div>
+<div class="flex gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Contact Emergency</a>
+</div>
+</footer>
+</body></html>

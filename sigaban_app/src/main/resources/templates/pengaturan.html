@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIGABAN - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffdbc8",
+                        "surface-tint": "#115cb9",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#424752",
+                        "on-secondary-container": "#5f2a00",
+                        "primary": "#003f87",
+                        "surface-bright": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary": "#004c17",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#83fc8e",
+                        "on-primary-container": "#bbd0ff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "background": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#001a40",
+                        "surface-container": "#edeeef",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#ff8016",
+                        "secondary-fixed-dim": "#ffb68a",
+                        "on-tertiary-fixed-variant": "#00531a",
+                        "on-tertiary-container": "#6fe87c",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "primary-container": "#0056b3",
+                        "on-tertiary-fixed": "#002106",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#321300",
+                        "tertiary-container": "#006722",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#66df75",
+                        "primary-fixed-dim": "#acc7ff",
+                        "outline-variant": "#c2c6d4",
+                        "outline": "#727784",
+                        "inverse-primary": "#acc7ff",
+                        "on-secondary-fixed-variant": "#743500",
+                        "secondary": "#984700",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-fixed-variant": "#004491",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f8f9fa; color: #191c1d; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid #E9ECEF;
+        }
+        .ai-glow {
+            box-shadow: inset 0 0 10px rgba(0, 86, 179, 0.1);
+        }
+        .input-field {
+            background-color: #ffffff;
+            border: 1px solid #DEE2E6;
+            transition: all 0.2s ease-in-out;
+        }
+        .input-field:focus {
+            border-color: #0056B3;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-body-md text-on-surface flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-high h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col h-full py-md z-50">
+<div class="px-md mb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
+</div>
+<ul class="flex-1 space-y-xs px-sm">
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-body-md text-body-md">Data Warga</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-body-md text-body-md">Bantuan</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-body-md text-body-md">Posko</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-body-md text-body-md">AI Insight</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-sm px-md py-sm rounded text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10 opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-lg py-sm">
+<div class="flex-1">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="input-field w-full pl-xl py-xs rounded-full font-body-sm text-body-sm text-on-surface bg-surface-container-lowest" placeholder="Search settings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 p-margin-desktop bg-surface-container-lowest">
+<div class="max-w-5xl mx-auto space-y-xl">
+<!-- Page Header -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Settings</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Manage your account, system configurations, and disaster alert parameters.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Account Settings (Col span 8) -->
+<div class="md:col-span-8 glass-card rounded-xl p-lg shadow-sm">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-sm mb-md">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Account Settings</h3>
+</div>
+<div class="flex flex-col md:flex-row gap-lg">
+<div class="flex-shrink-0 flex flex-col items-center gap-sm">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<span class="material-symbols-outlined text-4xl text-outline">person</span>
+</div>
+<button class="font-label-sm text-label-sm text-primary hover:underline">Change Photo</button>
+</div>
+<div class="flex-1 space-y-md">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Full Name</label>
+<input class="input-field w-full rounded px-sm py-xs font-body-sm text-body-sm" type="text" value="Commander Shepard"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Role</label>
+<input class="w-full rounded px-sm py-xs font-body-sm text-body-sm bg-surface-container-low text-outline border border-outline-variant cursor-not-allowed" disabled="" type="text" value="System Administrator"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Email</label>
+<input class="input-field w-full rounded px-sm py-xs font-body-sm text-body-sm" type="email" value="admin@sigaban.gov"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Phone Number</label>
+<input class="input-field w-full rounded px-sm py-xs font-body-sm text-body-sm" type="tel" value="+62 812 3456 7890"/>
+</div>
+</div>
+<div class="pt-sm border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-on-surface mb-sm">Security</h4>
+<div class="flex items-center justify-between bg-surface-container-low p-sm rounded border border-outline-variant">
+<div>
+<p class="font-body-sm text-body-sm font-semibold">Password</p>
+<p class="font-label-sm text-label-sm text-outline">Last changed 30 days ago</p>
+</div>
+<button class="px-md py-xs rounded bg-surface border border-primary text-primary font-label-sm text-label-sm hover:bg-primary hover:text-white transition-colors">Update</button>
+</div>
+</div>
+<div class="flex justify-end pt-sm">
+<button class="bg-primary text-white px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm">Save Changes</button>
+</div>
+</div>
+</div>
+</div>
+<!-- General Settings (Col span 4) -->
+<div class="md:col-span-4 glass-card rounded-xl p-lg shadow-sm flex flex-col">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-sm mb-md">
+<span class="material-symbols-outlined text-primary">public</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">General</h3>
+</div>
+<div class="space-y-md flex-1">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Active Region</label>
+<select class="input-field w-full rounded px-sm py-xs font-body-sm text-body-sm appearance-none">
+<option>Jakarta Selatan</option>
+<option>Jakarta Timur</option>
+<option>Jakarta Utara</option>
+</select>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Default Map View</label>
+<select class="input-field w-full rounded px-sm py-xs font-body-sm text-body-sm appearance-none">
+<option>Topographic</option>
+<option>Satellite</option>
+<option>Street</option>
+</select>
+</div>
+<div class="space-y-sm pt-sm border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-on-surface">Alert Thresholds</h4>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm">Water Level Warning (cm)</span>
+<input class="input-field w-20 rounded px-sm py-xs font-body-sm text-body-sm text-right" type="number" value="150"/>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-error font-semibold">Critical Level (cm)</span>
+<input class="input-field w-20 rounded px-sm py-xs font-body-sm text-body-sm text-right border-error" type="number" value="250"/>
+</div>
+</div>
+</div>
+</div>
+<!-- System Configuration & AI (Col span 6) -->
+<div class="md:col-span-6 glass-card rounded-xl p-lg shadow-sm ai-glow bg-gradient-to-br from-white to-[#E7F0FF]">
+<div class="flex items-center justify-between border-b border-outline-variant pb-sm mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">memory</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">System &amp; AI Config</h3>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div class="space-y-md">
+<div class="space-y-sm">
+<h4 class="font-label-md text-label-md text-on-surface">Notification Channels</h4>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-sm text-body-sm">Email Alerts (System Errors)</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input checked="" class="rounded border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-sm text-body-sm">SMS Gateway (Critical Evacuations)</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer">
+<input class="rounded border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-sm text-body-sm">Push Notifications (Mobile App)</span>
+</label>
+</div>
+<div class="space-y-xs pt-sm border-t border-outline-variant">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex justify-between">
+<span>AI Assistant API Key</span>
+<span class="text-tertiary">Connected</span>
+</label>
+<div class="flex gap-sm">
+<input class="input-field flex-1 rounded px-sm py-xs font-body-sm text-body-sm font-mono text-outline bg-surface-container-lowest" disabled="" type="password" value="sk-xxxxxxxxxxxxxxxxxxxxxxxx"/>
+<button class="px-md py-xs rounded bg-surface border border-outline-variant text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors">Rotate</button>
+</div>
+<p class="font-label-sm text-label-sm text-outline mt-xs text-xs">Used for predictive flood modeling and automated report generation.</p>
+</div>
+</div>
+</div>
+<!-- User Management (Col span 6) -->
+<div class="md:col-span-6 glass-card rounded-xl p-lg shadow-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-sm mb-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">manage_accounts</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">User Management</h3>
+</div>
+<button class="text-primary font-label-sm text-label-sm hover:underline flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">add</span> Add User
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">
+<th class="py-xs px-sm font-semibold rounded-tl">Name</th>
+<th class="py-xs px-sm font-semibold">Role</th>
+<th class="py-xs px-sm font-semibold">Status</th>
+<th class="py-xs px-sm font-semibold rounded-tr"></th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-sm font-medium">Budi Santoso</td>
+<td class="py-sm px-sm text-outline">Admin</td>
+<td class="py-sm px-sm"><span class="px-2 py-1 bg-tertiary/10 text-tertiary rounded text-xs font-semibold">Active</span></td>
+<td class="py-sm px-sm text-right"><button class="text-outline hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-sm font-medium">Siti Aminah</td>
+<td class="py-sm px-sm text-outline">Responder</td>
+<td class="py-sm px-sm"><span class="px-2 py-1 bg-tertiary/10 text-tertiary rounded text-xs font-semibold">Active</span></td>
+<td class="py-sm px-sm text-right"><button class="text-outline hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="py-sm px-sm font-medium">Ahmad Yani</td>
+<td class="py-sm px-sm text-outline">Volunteer</td>
+<td class="py-sm px-sm"><span class="px-2 py-1 bg-outline-variant/30 text-outline rounded text-xs font-semibold">Inactive</span></td>
+<td class="py-sm px-sm text-right"><button class="text-outline hover:text-primary"><span class="material-symbols-outlined text-sm">edit</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-sm text-center">
+<button class="font-label-sm text-label-sm text-primary hover:underline">View All Users</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container border-t border-outline-variant dark:border-outline w-full py-md flex flex-row justify-between items-center px-lg mt-auto">
+<span class="font-label-md text-label-md font-bold text-on-surface">© 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir</span>
+<div class="flex gap-md font-label-sm text-label-sm">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Contact Emergency</a>
+</div>
+</footer>
+</div>
+</body></html>

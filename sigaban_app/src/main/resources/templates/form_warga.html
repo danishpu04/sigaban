@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tambah Data Warga Baru - SIGABAN</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdbc8",
+                    "surface-tint": "#115cb9",
+                    "surface": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#424752",
+                    "on-secondary-container": "#5f2a00",
+                    "primary": "#003f87",
+                    "surface-bright": "#f8f9fa",
+                    "surface-variant": "#e1e3e4",
+                    "tertiary": "#004c17",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#83fc8e",
+                    "on-primary-container": "#bbd0ff",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "background": "#f8f9fa",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#001a40",
+                    "surface-container": "#edeeef",
+                    "primary-fixed": "#d7e2ff",
+                    "secondary-container": "#ff8016",
+                    "secondary-fixed-dim": "#ffb68a",
+                    "on-tertiary-fixed-variant": "#00531a",
+                    "on-tertiary-container": "#6fe87c",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "primary-container": "#0056b3",
+                    "on-tertiary-fixed": "#002106",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#321300",
+                    "tertiary-container": "#006722",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#66df75",
+                    "primary-fixed-dim": "#acc7ff",
+                    "outline-variant": "#c2c6d4",
+                    "outline": "#727784",
+                    "inverse-primary": "#acc7ff",
+                    "on-secondary-fixed-variant": "#743500",
+                    "secondary": "#984700",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-fixed-variant": "#004491",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ai-glow {
+            box-shadow: inset 0 0 10px rgba(0, 86, 179, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-high h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col py-md z-50">
+<!-- Brand -->
+<div class="px-md mb-xl flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-bold">S</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 px-sm flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/dashboard">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10 Active: opacity-80 transition-opacity duration-200" href="/data-warga">
+<span class="material-symbols-outlined" data-icon="groups" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-label-md text-label-md">Data Warga</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/bantuan">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+<span class="font-label-md text-label-md">Bantuan</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/posko">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md">Posko</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/ai-insight">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">AI Insight</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="/laporan">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors mt-auto" href="/pengaturan">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full ml-64 overflow-y-auto bg-surface relative">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-lg py-sm">
+<div class="flex items-center gap-md">
+<!-- Search Bar on_left -->
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-sm text-outline" data-icon="search">search</span>
+<input class="pl-xl pr-sm py-xs bg-surface-container-lowest border border-outline-variant rounded-full font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Cari NIK atau Nama..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-xs rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors p-xs rounded-full hover:bg-surface-container-highest flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-label-md text-label-md hidden md:inline">Admin Pusat</span>
+</button>
+</div>
+</header>
+<!-- Form Canvas -->
+<main class="flex-1 p-lg pb-xl">
+<!-- Breadcrumb & Header -->
+<div class="mb-lg max-w-6xl mx-auto">
+<a class="inline-flex items-center gap-xs text-outline hover:text-primary transition-colors font-label-sm text-label-sm mb-xs" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_back">arrow_back</span>
+                    Kembali ke Daftar Warga
+                </a>
+<h2 class="font-headline-lg text-headline-lg font-bold text-on-surface tracking-tight">Tambah Data Warga Baru</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Masukkan informasi detail warga terdampak untuk keperluan evakuasi dan logistik.</p>
+</div>
+<!-- Bento Form Grid -->
+<form action="/form-warga" method="POST" class="max-w-6xl mx-auto grid grid-cols-12 gap-lg">
+<!-- Left Column: Primary Data -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-lg">
+<!-- Card 1: Informasi Personal -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="border-b border-surface-container pb-sm mb-md flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Informasi Personal</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- NIK (with error state example) -->
+<div class="col-span-1 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="nik">Nomor Induk Kependudukan (NIK) <span class="text-error">*</span></label>
+<input class="w-full bg-surface-container-lowest border border-error rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-error/20 transition-all" id="nik" name="nik" placeholder="16 Digit NIK" type="text" value="320101"/>
+</div>
+<!-- Nama Lengkap -->
+<div class="col-span-1 md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="nama">Nama Lengkap <span class="text-error">*</span></label>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="nama" name="nama" placeholder="Sesuai KTP" type="text"/>
+</div>
+<!-- No HP -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="phone">Nomor Telepon/HP</label>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="phone" name="phone" placeholder="08xx-xxxx-xxxx" type="tel"/>
+</div>
+<!-- Jumlah Anggota Keluarga -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="family">Anggota Keluarga Bersama</label>
+<div class="flex items-center gap-sm">
+<input class="w-24 bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" id="family" min="0" name="family" placeholder="0" type="number"/>
+<span class="font-body-sm text-body-sm text-outline">Orang (diluar kepala keluarga)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Card 2: Lokasi & Pemetaan -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm relative overflow-hidden">
+<div class="border-b border-surface-container pb-sm mb-md flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Lokasi & Titik Evakuasi</h3>
+</div>
+<div class="grid grid-cols-1 gap-md">
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="address">Alamat Saat Ini (Lokasi Bencana) <span class="text-error">*</span></label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none" id="address" name="address" placeholder="Detail jalan, RT/RW, kelurahan..." rows="3"></textarea>
+</div>
+<!-- Map Area (Omitted for brevity, assuming standard setup) -->
+<div class="relative h-48 w-full bg-surface-container rounded-lg border border-outline-variant overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-80" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAv1CSNDYgSgKpyh0Fqwd7uEi0tySPGZuQG_PwimLdU2ljAoXi-GOtwD-ttjT0wjmV_jVtRUslqwKzYaesg4ydiNThfeTLRHBMN16F0AXEvbOrt1DIv75d_z6ln-19YfUsw-4908xj6Q9LgMUMPh5dKt5RUYnnjunid_Qnnwoq0Gsu-ewENBcjN_iXppGZpQzOuLRYeLUqGnvYJV9ENrMBC05STWkd9UqecjwjooG3pIKGg5HUuNRZY8T60yg_y35tyVwNHeFc_NUVx')"></div>
+</div>
+<!-- Evacuation Destination -->
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant mb-xs block" for="evacPoint">Rencana / Posko Evakuasi</label>
+<select class="w-full bg-surface border border-outline-variant rounded-md px-sm py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none" id="evacPoint" name="evacPoint">
+<option disabled="" selected="" value="">Pilih Posko Terdekat...</option>
+<option value="Posko Utama Balai Kota">Posko Utama Balai Kota (Kapasitas: Tersedia)</option>
+<option value="Posko Darurat SD 01">Posko Darurat SD 01 (Kapasitas: Penuh)</option>
+<option value="Evakuasi Mandiri">Evakuasi Mandiri (Rumah Kerabat)</option>
+</select>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Contextual & Status -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-lg">
+<!-- AI Prediction Card -->
+<div class="bg-gradient-to-b from-surface-container-lowest to-primary-fixed/20 border border-primary/20 rounded-xl p-md shadow-sm ai-glow relative overflow-hidden">
+<div class="flex justify-between items-start mb-sm relative z-10">
+<h3 class="font-label-md text-label-md font-bold text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="psychology">psychology</span>
+                                AI Insight
+                            </h3>
+<span class="bg-primary/10 text-primary px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-wider">Live</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant relative z-10">Berdasarkan alamat yang diinput, lokasi ini diprediksi mengalami kenaikan air +50cm dalam 2 jam ke depan. Prioritaskan evakuasi segera ke <strong>Posko Utama Balai Kota</strong>.</p>
+</div>
+<!-- Card 3: Status & Kebutuhan -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm flex-1">
+<div class="border-b border-surface-container pb-sm mb-md flex items-center gap-sm text-primary">
+<span class="material-symbols-outlined" data-icon="monitor_heart">monitor_heart</span>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Status Kesehatan</h3>
+</div>
+<!-- Health Status -->
+<div class="mb-md">
+<label class="font-label-md text-label-md text-on-surface-variant mb-sm block">Kondisi Saat Ini <span class="text-error">*</span></label>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-low border-tertiary">
+<input checked="" class="text-tertiary focus:ring-tertiary" name="health" type="radio" value="sehat"/>
+<span class="font-body-md text-body-md text-on-surface flex-1">Sehat / Aman</span>
+<span class="material-symbols-outlined text-tertiary" data-icon="check_circle">check_circle</span>
+</label>
+<label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="text-secondary focus:ring-secondary" name="health" type="radio" value="sakit_ringan"/>
+<span class="font-body-md text-body-md text-on-surface flex-1">Sakit Ringan</span>
+</label>
+<label class="flex items-center gap-sm p-sm border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors">
+<input class="text-error focus:ring-error" name="health" type="radio" value="kritis"/>
+<span class="font-body-md text-body-md text-on-surface flex-1 font-semibold text-error">Butuh Medis Segera</span>
+<span class="material-symbols-outlined text-error" data-icon="emergency">emergency</span>
+</label>
+</div>
+</div>
+<!-- Needs Checkboxes -->
+<div class="mt-lg">
+<label class="font-label-md text-label-md text-on-surface-variant mb-sm block">Kebutuhan Mendesak</label>
+<div class="grid grid-cols-2 gap-sm">
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Makanan Instan</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Air Bersih</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Obat-obatan</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Pakaian Bersih</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Selimut / Alas</span>
+</label>
+<label class="flex items-center gap-xs cursor-pointer group">
+<input class="rounded border-outline-variant text-primary focus:ring-primary group-hover:border-primary transition-colors" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Kebutuhan Bayi</span>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- Form Actions (Footer) -->
+<div class="col-span-12 flex justify-end gap-md pt-md border-t border-outline-variant mt-sm">
+<button class="px-lg py-sm font-label-md text-label-md text-primary border border-primary rounded-lg hover:bg-primary/5 transition-colors" type="button">
+                        Batal
+                    </button>
+<button class="px-lg py-sm font-label-md text-label-md text-on-primary bg-primary rounded-lg hover:bg-primary/90 shadow-sm transition-all flex items-center gap-sm" type="submit">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+                        Simpan Data
+                    </button>
+</div>
+</form>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container border-t border-outline-variant dark:border-outline w-full py-md flex flex-row justify-between items-center px-lg mt-auto">
+<p class="font-label-sm text-label-sm text-on-surface-variant dark:text-surface-variant">© 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir</p>
+<div class="flex gap-md">
+<a class="font-label-sm text-label-sm text-primary dark:text-primary-fixed underline hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-primary dark:text-primary-fixed underline hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-primary dark:text-primary-fixed underline hover:text-secondary dark:hover:text-secondary-fixed Transition-all duration-300" href="#">Contact Emergency</a>
+</div>
+</footer>
+</div>
+</body></html>

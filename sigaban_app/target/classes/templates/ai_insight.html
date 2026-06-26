@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIGABAN - AI Insight</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#ffdbc8",
+                        "surface-tint": "#115cb9",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface-variant": "#424752",
+                        "on-secondary-container": "#5f2a00",
+                        "primary": "#003f87",
+                        "surface-bright": "#f8f9fa",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary": "#004c17",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed": "#83fc8e",
+                        "on-primary-container": "#bbd0ff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-dim": "#d9dadb",
+                        "background": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-surface": "#191c1d",
+                        "on-primary-fixed": "#001a40",
+                        "surface-container": "#edeeef",
+                        "primary-fixed": "#d7e2ff",
+                        "secondary-container": "#ff8016",
+                        "secondary-fixed-dim": "#ffb68a",
+                        "on-tertiary-fixed-variant": "#00531a",
+                        "on-tertiary-container": "#6fe87c",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "primary-container": "#0056b3",
+                        "on-tertiary-fixed": "#002106",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#321300",
+                        "tertiary-container": "#006722",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#66df75",
+                        "primary-fixed-dim": "#acc7ff",
+                        "outline-variant": "#c2c6d4",
+                        "outline": "#727784",
+                        "inverse-primary": "#acc7ff",
+                        "on-secondary-fixed-variant": "#743500",
+                        "secondary": "#984700",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-fixed-variant": "#004491",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "xl": "32px",
+                        "margin-desktop": "32px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+        .ai-glow {
+            position: relative;
+        }
+        .ai-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 12px rgba(0, 86, 179, 0.15);
+            pointer-events: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #E7F0FF 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container-high h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline flex flex-col py-md z-50 hidden md:flex">
+<div class="px-md mb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
+</div>
+<div class="flex-1 overflow-y-auto scrollbar-hide">
+<ul class="space-y-sm">
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Data Warga</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="handshake">handshake</span>
+<span class="font-body-md text-body-md">Bantuan</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="location_on">location_on</span>
+<span class="font-body-md text-body-md">Posko</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10 opacity-80 transition-opacity duration-200" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-body-md text-body-md">AI Insight</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</li>
+<li>
+<a class="flex items-center px-md py-sm mx-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined mr-md" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-0 md:ml-64 h-screen bg-background">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant dark:border-outline docked full-width top-0 sticky z-40 flex justify-between items-center w-full px-lg py-sm h-16">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed md:hidden mr-sm">SIGABAN</span>
+</div>
+<div class="flex-1 max-w-md mx-auto hidden md:flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary-fixed transition-all">
+<span class="material-symbols-outlined text-outline mr-sm">search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-sm text-body-sm text-on-surface placeholder-outline" placeholder="Search insights..." type="text"/>
+</div>
+<div class="flex items-center space-x-sm">
+<button class="p-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 overflow-hidden flex flex-col md:flex-row gap-lg p-lg relative">
+<!-- Left: AI Chat Interface -->
+<section class="flex-1 flex flex-col glass-panel rounded-xl h-full border border-outline-variant/50 shadow-sm relative z-10">
+<div class="p-md border-b border-outline-variant/30 flex items-center justify-between bg-surface/50 rounded-t-xl">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center mr-sm">
+<span class="material-symbols-outlined text-on-primary-container text-sm" data-icon="psychology" data-weight="fill" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">SIGABAN Assistant</h2>
+<p class="font-label-sm text-label-sm text-tertiary flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Online
+                            </p>
+</div>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-md space-y-md flex flex-col scrollbar-hide">
+<!-- System Greeting -->
+<div class="flex justify-center my-sm">
+<span class="font-label-sm text-label-sm text-outline bg-surface-container-low px-sm py-xs rounded-full">Today, 08:30 AM</span>
+</div>
+<!-- AI Message -->
+<div class="flex items-start max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center mr-sm flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-on-primary-container text-sm">psychology</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl rounded-tl-none p-md ai-glow">
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+                                Sistem pemantauan aktif. Berdasarkan data sensor IoT terkini, status siaga 2 di area utara. Ada yang bisa saya bantu analisis hari ini?
+                            </p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start justify-end max-w-[85%] ml-auto">
+<div class="bg-primary text-on-primary rounded-2xl rounded-tr-none p-md shadow-sm">
+<p class="font-body-sm text-body-sm leading-relaxed">
+                                Bagaimana prediksi penyebaran banjir di wilayah utara?
+                            </p>
+</div>
+</div>
+<!-- AI Processing Indicator -->
+<div class="flex items-start max-w-[85%]">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center mr-sm flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-on-primary-container text-sm animate-spin">sync</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl rounded-tl-none p-md flex items-center space-x-2">
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+</div>
+</div>
+</div>
+<!-- Chat Input Area -->
+<div class="p-md bg-surface/80 border-t border-outline-variant/30 rounded-b-xl">
+<div class="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant rounded-full p-1 pl-4 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all shadow-sm">
+<input class="flex-1 bg-transparent border-none outline-none font-body-sm text-body-sm py-2 text-on-surface placeholder-outline-variant" placeholder="Tanyakan seputar data posko, cuaca, atau logistik..." type="text"/>
+<button class="p-2 rounded-full text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="bg-primary text-on-primary p-2 rounded-full hover:bg-primary-container transition-colors shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right: AI Insight Dashboard (Bento Grid) -->
+<section class="w-full md:w-[45%] lg:w-[50%] xl:w-[55%] h-full flex flex-col gap-md overflow-y-auto scrollbar-hide pb-md pr-xs">
+<!-- Flood Summary Card -->
+<div class="glass-panel p-md rounded-xl border border-outline-variant/50 shadow-sm relative overflow-hidden ai-glow">
+<div class="absolute top-0 right-0 p-sm opacity-20">
+<span class="material-symbols-outlined text-6xl">water_drop</span>
+</div>
+<div class="flex items-center gap-2 mb-sm">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Flood Impact Summary</h3>
+<span class="ml-auto bg-error/10 text-error font-label-sm text-label-sm px-2 py-1 rounded-md border border-error/20 flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span> Siaga 2
+                        </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed relative z-10">
+                        AI analysis detects an upward trend in water levels (+15cm/hr) across Jakarta Utara. Current data from 12 active IoT sensors indicates significant runoff from upstream. Recommended immediate preparation for evacuation in RW 03 and RW 04 over the next 4 hours.
+                    </p>
+</div>
+<!-- Bento Grid for Recommendations & Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Recommendation 1 -->
+<div class="gradient-bg p-md rounded-xl border border-primary/20 shadow-sm ai-glow relative group cursor-pointer hover:shadow-md transition-all">
+<div class="absolute top-sm right-sm text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="sparkles" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="material-symbols-outlined text-tertiary mb-xs text-2xl">local_shipping</span>
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Prioritas Distribusi</h4>
+<div class="mt-sm">
+<div class="text-headline-lg font-bold text-primary leading-none mb-xs">Jakut</div>
+<p class="font-label-sm text-label-sm text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> High Urgency
+                            </p>
+</div>
+</div>
+<!-- Recommendation 2 -->
+<div class="gradient-bg p-md rounded-xl border border-primary/20 shadow-sm ai-glow relative group cursor-pointer hover:shadow-md transition-all">
+<div class="absolute top-sm right-sm text-primary">
+<span class="material-symbols-outlined text-xl" data-icon="sparkles" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<span class="material-symbols-outlined text-secondary-container mb-xs text-2xl">inventory_2</span>
+<h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Estimasi Kebutuhan</h4>
+<div class="mt-sm">
+<div class="text-headline-lg font-bold text-primary leading-none mb-xs">3000<span class="text-body-sm font-normal text-on-surface-variant">kg/hr</span></div>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+                                Beras &amp; Air Bersih
+                            </p>
+</div>
+</div>
+</div>
+<!-- Prediction Graph Card -->
+<div class="glass-panel p-md rounded-xl border border-outline-variant/50 shadow-sm flex-1 min-h-[250px] flex flex-col relative ai-glow">
+<div class="flex items-center justify-between mb-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">12-Hour Water Level Forecast</h3>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Faux Graph Area -->
+<div class="flex-1 relative w-full rounded-lg bg-surface-container-lowest border border-outline-variant/30 overflow-hidden flex items-end p-4">
+<!-- Y-axis labels -->
+<div class="absolute left-2 top-2 bottom-6 flex flex-col justify-between text-[10px] text-outline font-label-sm">
+<span>150cm</span>
+<span>100cm</span>
+<span>50cm</span>
+</div>
+<!-- Grid lines -->
+<div class="absolute left-10 right-0 top-4 bottom-8 flex flex-col justify-between">
+<div class="border-t border-outline-variant/20 w-full"></div>
+<div class="border-t border-outline-variant/20 w-full"></div>
+<div class="border-t border-outline-variant/20 w-full"></div>
+</div>
+<!-- Sparkline/Chart Visualization -->
+<div class="absolute left-10 right-4 bottom-8 top-4 flex items-end gap-1">
+<!-- Bars representing hourly data. The last few are 'predictions' (lighter color) -->
+<div class="w-full bg-primary/40 rounded-t-sm" style="height: 20%;"></div>
+<div class="w-full bg-primary/50 rounded-t-sm" style="height: 25%;"></div>
+<div class="w-full bg-primary/60 rounded-t-sm" style="height: 35%;"></div>
+<div class="w-full bg-primary/70 rounded-t-sm" style="height: 40%;"></div>
+<div class="w-full bg-primary/80 rounded-t-sm" style="height: 55%; position: relative;">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-surface text-on-surface text-[10px] px-1 py-0.5 rounded shadow-sm border border-outline-variant/50">Now</div>
+</div>
+<!-- Predictive bars -->
+<div class="w-full bg-secondary-fixed-dim/60 border border-secondary-container/30 rounded-t-sm" style="height: 65%;"></div>
+<div class="w-full bg-secondary-fixed-dim/60 border border-secondary-container/30 rounded-t-sm" style="height: 75%;"></div>
+<div class="w-full bg-error-container/60 border border-error/30 rounded-t-sm" style="height: 85%;"></div>
+<div class="w-full bg-error-container/80 border border-error/50 rounded-t-sm" style="height: 95%;"></div>
+</div>
+<!-- X-axis labels -->
+<div class="absolute bottom-1 left-10 right-4 flex justify-between text-[10px] text-outline font-label-sm">
+<span>-4h</span>
+<span>-2h</span>
+<span>Now</span>
+<span class="text-secondary-container">+2h</span>
+<span class="text-error">+4h</span>
+</div>
+</div>
+<div class="mt-sm flex justify-center gap-4">
+<div class="flex items-center gap-1 font-label-sm text-[11px] text-outline">
+<span class="w-3 h-3 rounded-sm bg-primary/60"></span> Observed
+                        </div>
+<div class="flex items-center gap-1 font-label-sm text-[11px] text-outline">
+<span class="w-3 h-3 rounded-sm bg-secondary-fixed-dim/60 border border-secondary-container/30"></span> AI Predicted
+                        </div>
+<div class="flex items-center gap-1 font-label-sm text-[11px] text-outline">
+<span class="w-3 h-3 rounded-sm bg-error-container/80 border border-error/50"></span> Critical Zone
+                        </div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

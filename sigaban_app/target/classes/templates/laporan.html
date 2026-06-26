@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reports - SIGABAN</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdbc8",
+                    "surface-tint": "#115cb9",
+                    "surface": "#f8f9fa",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-surface-variant": "#424752",
+                    "on-secondary-container": "#5f2a00",
+                    "primary": "#003f87",
+                    "surface-bright": "#f8f9fa",
+                    "surface-variant": "#e1e3e4",
+                    "tertiary": "#004c17",
+                    "on-background": "#191c1d",
+                    "tertiary-fixed": "#83fc8e",
+                    "on-primary-container": "#bbd0ff",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-dim": "#d9dadb",
+                    "background": "#f8f9fa",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-surface": "#191c1d",
+                    "on-primary-fixed": "#001a40",
+                    "surface-container": "#edeeef",
+                    "primary-fixed": "#d7e2ff",
+                    "secondary-container": "#ff8016",
+                    "secondary-fixed-dim": "#ffb68a",
+                    "on-tertiary-fixed-variant": "#00531a",
+                    "on-tertiary-container": "#6fe87c",
+                    "on-secondary": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "primary-container": "#0056b3",
+                    "on-tertiary-fixed": "#002106",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#321300",
+                    "tertiary-container": "#006722",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#66df75",
+                    "primary-fixed-dim": "#acc7ff",
+                    "outline-variant": "#c2c6d4",
+                    "outline": "#727784",
+                    "inverse-primary": "#acc7ff",
+                    "on-secondary-fixed-variant": "#743500",
+                    "secondary": "#984700",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary-fixed-variant": "#004491",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "32px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-mobile": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Input Focus Glow */
+        input:focus, select:focus {
+            box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.2);
+            border-color: #0056b3;
+            outline: none;
+        }
+        
+        /* Custom scrollbar for sidebar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased flex">
+<!-- SideNavBar -->
+<nav class="bg-surface-container h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-md z-50">
+<!-- Brand Header -->
+<div class="px-md pb-lg mb-sm border-b border-outline-variant/50">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined fill text-[20px]">flood</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant font-normal">Disaster Mgmt System</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col h-full py-md px-sm gap-xs overflow-y-auto">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-md text-label-md">Data Warga</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">handshake</span>
+<span class="font-label-md text-label-md">Bantuan</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-md text-label-md">Posko</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-md text-label-md">AI Insight</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-container/10 hover:bg-surface-container-highest transition-colors opacity-80 duration-200" href="#">
+<span class="material-symbols-outlined fill">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant flex justify-between items-center w-full px-lg py-sm max-w-full">
+<div class="flex items-center gap-md flex-1">
+<!-- Search on left per JSON -->
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:border-primary focus:bg-surface transition-colors" placeholder="Search reports..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas Area -->
+<main class="flex-1 p-lg max-w-7xl mx-auto w-full flex flex-col gap-lg">
+<!-- Page Header -->
+<div class="flex flex-col gap-xs mb-sm">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Reports &amp; Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Generate customized operational reports and analyze historical disaster data.</p>
+</div>
+<!-- Top Grid: Generator & Analytics Overview -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Report Generator Card (Cols 1-4) -->
+<div class="lg:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md shadow-sm">
+<div class="flex items-center gap-sm border-b border-surface-variant pb-sm mb-xs">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Report Generator</h3>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface">Report Type</label>
+<select class="w-full bg-surface border border-outline-variant rounded py-2 px-3 font-body-sm text-body-sm text-on-surface appearance-none">
+<option>Data Warga (Citizens)</option>
+<option>Bantuan (Aid Distribution)</option>
+<option>Posko (Shelters)</option>
+<option>Incident Summary</option>
+</select>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface">Region</label>
+<select class="w-full bg-surface border border-outline-variant rounded py-2 px-3 font-body-sm text-body-sm text-on-surface appearance-none">
+<option>All Regions</option>
+<option>Jakarta Selatan</option>
+<option>Jakarta Timur</option>
+<option>Jakarta Barat</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface">Start Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded py-2 px-3 font-body-sm text-body-sm text-on-surface" type="date"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-label-sm text-on-surface">End Date</label>
+<input class="w-full bg-surface border border-outline-variant rounded py-2 px-3 font-body-sm text-body-sm text-on-surface" type="date"/>
+</div>
+</div>
+<button class="mt-auto w-full bg-primary text-on-primary font-label-md text-label-md py-2 rounded flex items-center justify-center gap-xs hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                        Generate Report
+                    </button>
+</div>
+<!-- Analytics Overview Card (Cols 5-12) -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col shadow-sm relative overflow-hidden">
+<!-- AI Glow Effect Background -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-primary-fixed-dim/20 to-transparent rounded-bl-full pointer-events-none"></div>
+<div class="flex justify-between items-start mb-lg relative z-10">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+                                Incident Trends
+                            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Water level alerts vs Evacuations over the last 6 months.</p>
+</div>
+<div class="bg-surface-bright border border-outline-variant rounded-full px-3 py-1 flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-primary text-[16px]">psychology</span>
+<span class="font-label-sm text-label-sm text-primary">AI Forecast</span>
+</div>
+</div>
+<!-- Mock Chart Area using CSS Flex -->
+<div class="flex-1 flex items-end gap-md h-48 mt-auto border-b border-l border-outline-variant pl-sm pb-sm relative z-10">
+<!-- Y-Axis Labels -->
+<div class="absolute -left-6 top-0 bottom-0 flex flex-col justify-between font-label-sm text-label-sm text-outline h-full py-sm">
+<span>100</span>
+<span>50</span>
+<span>0</span>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex flex-col justify-end group">
+<div class="w-full bg-primary/20 hover:bg-primary/40 rounded-t transition-colors h-[30%] relative"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block">Jan</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="w-full bg-primary/30 hover:bg-primary/50 rounded-t transition-colors h-[45%] relative"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block">Feb</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="w-full bg-primary/60 hover:bg-primary/80 rounded-t transition-colors h-[80%] relative"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block">Mar</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="w-full bg-primary rounded-t transition-colors h-[95%] relative shadow-[inset_0_0_8px_rgba(255,255,255,0.2)]"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block text-primary font-bold">Apr</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group">
+<div class="w-full bg-primary/40 hover:bg-primary/60 rounded-t transition-colors h-[50%] relative"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block">May</span>
+</div>
+<div class="flex-1 flex flex-col justify-end group relative">
+<!-- Projected bar -->
+<div class="w-full bg-surface-container-high border-2 border-dashed border-primary/40 rounded-t h-[60%] relative"></div>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant mt-2 block">Jun (Proj)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
+<div class="p-md border-b border-outline-variant bg-surface-bright flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Monthly Activity Summary</h3>
+<button class="font-label-sm text-label-sm text-primary flex items-center gap-xs hover:underline">
+                        View Full Details <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant">
+<th class="p-sm font-semibold border-b border-outline-variant/50">Month</th>
+<th class="p-sm font-semibold border-b border-outline-variant/50">Active Shelters</th>
+<th class="p-sm font-semibold border-b border-outline-variant/50">Aid Distributed (Tons)</th>
+<th class="p-sm font-semibold border-b border-outline-variant/50">Evacuated Warga</th>
+<th class="p-sm font-semibold border-b border-outline-variant/50 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<tr class="border-b border-surface-variant hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-sm">April 2024</td>
+<td class="p-sm">42</td>
+<td class="p-sm">15.5</td>
+<td class="p-sm">3,420</td>
+<td class="p-sm text-right">
+<span class="inline-block px-2 py-1 bg-error-container text-on-error-container rounded text-[10px] font-bold uppercase tracking-wider">Critical</span>
+</td>
+</tr>
+<tr class="border-b border-surface-variant hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-sm">March 2024</td>
+<td class="p-sm">18</td>
+<td class="p-sm">5.2</td>
+<td class="p-sm">1,150</td>
+<td class="p-sm text-right">
+<span class="inline-block px-2 py-1 bg-secondary-fixed text-on-secondary-fixed rounded text-[10px] font-bold uppercase tracking-wider">Elevated</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest/50 transition-colors">
+<td class="p-sm">February 2024</td>
+<td class="p-sm">5</td>
+<td class="p-sm">1.0</td>
+<td class="p-sm">230</td>
+<td class="p-sm text-right">
+<span class="inline-block px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded text-[10px] font-bold uppercase tracking-wider">Stable</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Download Center Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Download Center (Recent Reports)</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Report Item 1 -->
+<div class="border border-outline-variant rounded p-sm flex flex-col gap-sm hover:border-primary transition-colors bg-surface">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline">description</span>
+<span class="font-label-md text-label-md text-on-surface truncate max-w-[150px]">Warga_Evac_Q1.pdf</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">2 hrs ago</span>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-surface-variant">
+<button class="flex-1 border border-primary text-primary font-label-sm text-label-sm py-1 rounded hover:bg-primary-container/10 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> PDF
+                            </button>
+</div>
+</div>
+<!-- Report Item 2 -->
+<div class="border border-outline-variant rounded p-sm flex flex-col gap-sm hover:border-primary transition-colors bg-surface">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline">table_view</span>
+<span class="font-label-md text-label-md text-on-surface truncate max-w-[150px]">Aid_Dist_April.xlsx</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">1 day ago</span>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-surface-variant">
+<button class="flex-1 border border-primary text-primary font-label-sm text-label-sm py-1 rounded hover:bg-primary-container/10 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">download</span> Excel
+                            </button>
+</div>
+</div>
+<!-- Report Item 3 -->
+<div class="border border-outline-variant rounded p-sm flex flex-col gap-sm hover:border-primary transition-colors bg-surface">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-outline">summarize</span>
+<span class="font-label-md text-label-md text-on-surface truncate max-w-[150px]">Shelter_Cap_Live.pdf</span>
+</div>
+<span class="font-body-sm text-[11px] text-outline">3 days ago</span>
+</div>
+<div class="flex gap-sm mt-auto pt-sm border-t border-surface-variant">
+<button class="flex-1 border border-primary text-primary font-label-sm text-label-sm py-1 rounded hover:bg-primary-container/10 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">picture_as_pdf</span> PDF
+                            </button>
+<button class="flex-1 border border-primary text-primary font-label-sm text-label-sm py-1 rounded hover:bg-primary-container/10 transition-colors flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">download</span> CSV
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-md mt-auto flex flex-row justify-between items-center px-lg">
+<div class="font-label-md text-label-md font-bold text-on-surface">
+                © 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir
+            </div>
+<div class="flex gap-md font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Contact Emergency</a>
+</div>
+</footer>
+</div>
+</body></html>

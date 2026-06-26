@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SIGABAN - Posko Banjir</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#ffdbc8",
+                      "surface-tint": "#115cb9",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-surface-variant": "#424752",
+                      "on-secondary-container": "#5f2a00",
+                      "primary": "#003f87",
+                      "surface-bright": "#f8f9fa",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary": "#004c17",
+                      "on-background": "#191c1d",
+                      "tertiary-fixed": "#83fc8e",
+                      "on-primary-container": "#bbd0ff",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-dim": "#d9dadb",
+                      "background": "#f8f9fa",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-surface": "#191c1d",
+                      "on-primary-fixed": "#001a40",
+                      "surface-container": "#edeeef",
+                      "primary-fixed": "#d7e2ff",
+                      "secondary-container": "#ff8016",
+                      "secondary-fixed-dim": "#ffb68a",
+                      "on-tertiary-fixed-variant": "#00531a",
+                      "on-tertiary-container": "#6fe87c",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "primary-container": "#0056b3",
+                      "on-tertiary-fixed": "#002106",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#321300",
+                      "tertiary-container": "#006722",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#66df75",
+                      "primary-fixed-dim": "#acc7ff",
+                      "outline-variant": "#c2c6d4",
+                      "outline": "#727784",
+                      "inverse-primary": "#acc7ff",
+                      "on-secondary-fixed-variant": "#743500",
+                      "secondary": "#984700",
+                      "surface-container-low": "#f3f4f5",
+                      "on-primary-fixed-variant": "#004491",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "margin-desktop": "32px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "margin-mobile": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ai-glow {
+            box-shadow: inset 0 0 15px rgba(0, 86, 179, 0.1);
+        }
+        .pulse-marker {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar -->
+<nav aria-label="Sidebar Navigation" class="hidden md:flex flex-col h-full py-md bg-surface-container dark:bg-surface-container-high text-primary dark:text-primary-fixed font-body-md text-body-md h-screen w-64 fixed left-0 top-0 border-r border-outline-variant dark:border-outline z-50">
+<div class="px-md mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-[32px] text-primary" data-icon="waves" style="font-variation-settings: 'FILL' 1;">waves</span>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Disaster Mgmt System</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-sm px-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+                        Data Warga
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+                        Bantuan
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary-fixed font-bold border-r-4 border-primary dark:border-primary-fixed bg-primary-container/10" href="#">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                        Posko
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+                        AI Insight
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+                        Reports
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-dim transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                        Settings
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Mobile Bottom Nav (Mocked for structure, hidden on md) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container border-t border-outline-variant z-50 flex justify-around py-sm">
+<a class="flex flex-col items-center text-on-surface-variant" href="#"><span class="material-symbols-outlined" data-icon="dashboard">dashboard</span></a>
+<a class="flex flex-col items-center text-primary font-bold" href="#"><span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span></a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#"><span class="material-symbols-outlined" data-icon="handshake">handshake</span></a>
+<a class="flex flex-col items-center text-on-surface-variant" href="#"><span class="material-symbols-outlined" data-icon="settings">settings</span></a>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen md:ml-64 w-full md:max-w-[calc(100%-16rem)]">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-lg py-sm bg-surface dark:bg-background text-primary dark:text-primary-fixed font-label-md text-label-md docked full-width top-0 sticky z-40 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-sm py-xs border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-outline ml-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-48 text-on-surface placeholder-outline ml-xs" placeholder="Cari Posko..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-container-highest">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop overflow-y-auto">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg gap-md">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Manajemen Posko</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Pantau ketersediaan dan kapasitas posko pengungsian secara real-time.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary-container transition-colors shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Tambah Posko Baru
+                </button>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Map Area (Takes up more space) -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden relative h-[400px] lg:h-[600px] shadow-sm">
+<!-- Placeholder Map Image -->
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A highly detailed overhead view of an interactive digital map showing Jakarta, Indonesia. The map is designed in a modern, clean light-mode aesthetic using soft greys, whites, and pale blues for water bodies. Several circular markers in bright red and subtle green are scattered across the map indicating shelter locations. The visual style is crisp, professional, and authoritative, suitable for a disaster management dashboard." data-location="Jakarta, Indonesia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAv1CSNDYgSgKpyh0Fqwd7uEi0tySPGZuQG_PwimLdU2ljAoXi-GOtwD-ttjT0wjmV_jVtRUslqwKzYaesg4ydiNThfeTLRHBMN16F0AXEvbOrt1DIv75d_z6ln-19YfUsw-4908xj6Q9LgMUMPh5dKt5RUYnnjunid_Qnnwoq0Gsu-ewENBcjN_iXppGZpQzOuLRYeLUqGnvYJV9ENrMBC05STWkd9UqecjwjooG3pIKGg5HUuNRZY8T60yg_y35tyVwNHeFc_NUVx')"></div>
+<!-- Glassmorphic Overlay Controls -->
+<div class="absolute top-md left-md glass-card rounded-lg p-sm shadow-md flex flex-col gap-xs z-10">
+<button class="p-xs bg-surface-container-lowest rounded hover:bg-surface-container transition-colors" title="Zoom In"><span class="material-symbols-outlined text-on-surface">add</span></button>
+<div class="w-full h-[1px] bg-outline-variant"></div>
+<button class="p-xs bg-surface-container-lowest rounded hover:bg-surface-container transition-colors" title="Zoom Out"><span class="material-symbols-outlined text-on-surface">remove</span></button>
+</div>
+<div class="absolute bottom-md right-md glass-card rounded-lg p-sm shadow-md z-10">
+<div class="flex items-center gap-sm font-label-sm text-label-sm">
+<span class="w-3 h-3 rounded-full bg-error pulse-marker"></span> Penuh / Waspada
+                            <span class="w-3 h-3 rounded-full bg-tertiary ml-sm"></span> Tersedia
+                        </div>
+</div>
+</div>
+<!-- Shelter List Side Panel -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<!-- Filters/Search for list -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-sm shadow-sm flex gap-sm">
+<div class="flex-1 flex items-center bg-surface-container-low rounded px-sm py-xs border border-outline-variant">
+<span class="material-symbols-outlined text-outline text-[18px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm w-full text-on-surface placeholder-outline ml-xs p-0" placeholder="Cari nama posko..." type="text"/>
+</div>
+<button class="bg-surface-container rounded p-xs border border-outline-variant hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+</button>
+</div>
+<!-- List Scroll Area -->
+<div class="flex-1 overflow-y-auto space-y-sm pr-xs custom-scrollbar h-[340px] lg:h-[530px]">
+<!-- Card 1 (Hampir Penuh) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Posko GOR Jakarta Utara</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Jl. Yos Sudarso No.22
+                                    </p>
+</div>
+<span class="bg-secondary-container/20 text-secondary border border-secondary/30 font-label-sm text-label-sm px-xs py-xs rounded">Hampir Penuh</span>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md bg-surface-container-low p-sm rounded-lg">
+<div>
+<p class="font-label-sm text-label-sm text-outline">Kapasitas</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold">450 <span class="text-on-surface-variant font-normal text-[14px]">/ 500</span></p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline">Fasilitas Medis</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-tertiary text-[16px]">check_circle</span> Tersedia</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-md">
+<div class="bg-secondary h-2 rounded-full" style="width: 90%"></div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-sm">
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span> 0812-3456-7890
+                                </div>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Detail</button>
+</div>
+</div>
+<!-- Card 2 (Tersedia) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Balai Warga RW 04</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Kel. Pluit, Penjaringan
+                                    </p>
+</div>
+<span class="bg-tertiary-container/20 text-tertiary border border-tertiary/30 font-label-sm text-label-sm px-xs py-xs rounded">Tersedia</span>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md bg-surface-container-low p-sm rounded-lg">
+<div>
+<p class="font-label-sm text-label-sm text-outline">Kapasitas</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold">120 <span class="text-on-surface-variant font-normal text-[14px]">/ 200</span></p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline">Logistik</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-secondary text-[16px]">warning</span> Menipis</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-surface-container-high rounded-full h-2 mb-md">
+<div class="bg-tertiary h-2 rounded-full" style="width: 60%"></div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-sm">
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span> 0812-9876-5432
+                                </div>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Detail</button>
+</div>
+</div>
+<!-- Card 3 (Penuh - AI Predicted) -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md shadow-sm hover:shadow-md transition-shadow relative overflow-hidden ai-glow">
+<!-- AI Sparkle Icon -->
+<div class="absolute top-md right-md text-primary opacity-50">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</div>
+<div class="flex justify-between items-start mb-sm pr-lg">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">SDN 01 Kapuk Muara</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-[14px]">location_on</span> Jl. Kapuk Raya
+                                    </p>
+</div>
+<span class="bg-error-container/40 text-error border border-error/30 font-label-sm text-label-sm px-xs py-xs rounded">Penuh</span>
+</div>
+<div class="grid grid-cols-2 gap-sm mb-md bg-surface-container-low p-sm rounded-lg relative">
+<div>
+<p class="font-label-sm text-label-sm text-outline">Kapasitas</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold text-error">305 <span class="text-on-surface-variant font-normal text-[14px]">/ 300</span></p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline">Prediksi AI 12 Jam</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold flex items-center gap-xs text-secondary"><span class="material-symbols-outlined text-[16px]">trending_up</span> Arus Bertambah</p>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-error-container rounded-full h-2 mb-md">
+<div class="bg-error h-2 rounded-full" style="width: 100%"></div>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-sm">
+<div class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">call</span> 0855-1122-3344
+                                </div>
+<button class="text-primary font-label-sm text-label-sm hover:underline">Detail</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="flex flex-row justify-between items-center px-lg w-full py-md bg-surface-container-lowest dark:bg-surface-container border-t border-outline-variant dark:border-outline font-label-sm text-label-sm text-primary dark:text-primary-fixed mt-auto">
+<div>
+<span class="font-label-md text-label-md font-bold text-on-surface">SIGABAN</span>
+<span class="ml-sm text-on-surface-variant">© 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir</span>
+</div>
+<div class="flex gap-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-primary dark:text-primary-fixed underline hover:text-secondary dark:hover:text-secondary-fixed transition-all duration-300 font-bold" href="#">Contact Emergency</a>
+</div>
+</footer>
+</main>
+<style>
+        /* Custom scrollbar for the list */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #c2c6d4; /* outline-variant */
+            border-radius: 10px;
+        }
+    </style>
+</body></html>

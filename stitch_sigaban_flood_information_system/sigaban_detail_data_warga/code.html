@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detail Warga - SIGABAN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed": "#ffdbc8",
+                      "surface-tint": "#115cb9",
+                      "surface": "#f8f9fa",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "on-surface-variant": "#424752",
+                      "on-secondary-container": "#5f2a00",
+                      "primary": "#003f87",
+                      "surface-bright": "#f8f9fa",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary": "#004c17",
+                      "on-background": "#191c1d",
+                      "tertiary-fixed": "#83fc8e",
+                      "on-primary-container": "#bbd0ff",
+                      "surface-container-high": "#e7e8e9",
+                      "surface-dim": "#d9dadb",
+                      "background": "#f8f9fa",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-surface": "#191c1d",
+                      "on-primary-fixed": "#001a40",
+                      "surface-container": "#edeeef",
+                      "primary-fixed": "#d7e2ff",
+                      "secondary-container": "#ff8016",
+                      "secondary-fixed-dim": "#ffb68a",
+                      "on-tertiary-fixed-variant": "#00531a",
+                      "on-tertiary-container": "#6fe87c",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#2e3132",
+                      "primary-container": "#0056b3",
+                      "on-tertiary-fixed": "#002106",
+                      "on-error-container": "#93000a",
+                      "on-secondary-fixed": "#321300",
+                      "tertiary-container": "#006722",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#66df75",
+                      "primary-fixed-dim": "#acc7ff",
+                      "outline-variant": "#c2c6d4",
+                      "outline": "#727784",
+                      "inverse-primary": "#acc7ff",
+                      "on-secondary-fixed-variant": "#743500",
+                      "secondary": "#984700",
+                      "surface-container-low": "#f3f4f5",
+                      "on-primary-fixed-variant": "#004491",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "16px",
+                      "xl": "32px",
+                      "margin-desktop": "32px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "margin-mobile": "16px",
+                      "sm": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "headline-xl": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-xl": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="bg-surface-container h-screen w-64 fixed left-0 top-0 border-r border-outline-variant flex flex-col py-md z-50 md:flex hidden">
+<div class="px-md pb-lg border-b border-outline-variant mb-md">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">SIGABAN</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Disaster Mgmt System</p>
+</div>
+<nav class="flex-1 overflow-y-auto px-sm flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary font-bold border-r-4 border-primary bg-primary-container/10 hover:bg-surface-container-highest transition-colors opacity-80 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-label-md text-label-md">Data Warga</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+<span class="font-label-md text-label-md">Bantuan</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-label-md text-label-md">Posko</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="font-label-md text-label-md">AI Insight</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant flex justify-between items-center w-full px-lg py-sm">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="flex-1 max-w-md mx-lg hidden sm:block">
+<div class="relative flex items-center w-full h-10 rounded-full focus-within:shadow-lg bg-surface-container overflow-hidden">
+<div class="grid place-items-center h-full w-12 text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="peer h-full w-full outline-none text-sm text-on-surface bg-transparent pr-2 font-body-sm text-body-sm" id="search" placeholder="Search Data Warga..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Page Content -->
+<main class="flex-1 p-gutter md:p-margin-desktop overflow-y-auto">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-lg gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Detail Warga: Budi Santoso</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Update terakhir: Hari ini, 09:45 WIB</p>
+</div>
+<div class="flex gap-sm w-full sm:w-auto">
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-xs px-md py-sm rounded-lg border border-primary text-primary hover:bg-primary/5 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px]">print</span>
+                        Cetak Kartu
+                    </button>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-xs px-md py-sm rounded-lg bg-primary-container text-on-primary border border-transparent hover:bg-primary transition-colors font-label-md text-label-md shadow-sm">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                        Edit Data
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- 1. Personal Info Section (Col span 4) -->
+<div class="lg:col-span-4 bg-surface-container-lowest rounded-xl border border-outline-variant p-md flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-xs">Informasi Pribadi</h3>
+<div class="flex flex-col items-center gap-md">
+<div class="w-32 h-32 rounded-full overflow-hidden border-4 border-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot portrait of an Indonesian man in his 40s. He has short black hair, warm brown skin, and a calm, resilient expression. He is wearing a simple, clean, dark blue polo shirt. The background is a neutral, light grey studio setting with soft, even, high-key lighting indicative of a modern, clinical, or administrative environment. The aesthetic is clean, respectful, and realistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_lPj_jUksM5St_yxfiXuKyV_OBDjqEZPzSHySkxYyziHls5puT6-yIRGuGxUEFIQh7DG4UbP0uN9trEYseOGi0TSec39poD1801TC6iXeS_FHCdV4jWKYricuvVJH5fVFKBC8PE7FzAmsImcKpar9eupQbQmQEzANuUJR44NyGY5bbqT7QuU6FPXG0a0JLgBUhZc7DYgvzRJ13TaiOddPrApERtfequT5-SPvxw37KetUU6t_3xgFnu3OfdLLP6-Ege6r351c__Xl"/>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md text-on-surface">Budi Santoso</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ID Warga: W-10293</p>
+</div>
+</div>
+<div class="flex flex-col gap-sm mt-sm">
+<div class="flex justify-between items-center py-xs border-b border-outline-variant/50">
+<span class="font-label-sm text-label-sm text-on-surface-variant">NIK</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">3174012345678901</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant/50">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Usia</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">45 Tahun</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant/50">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Jenis Kelamin</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Laki-laki</span>
+</div>
+<div class="flex justify-between items-start py-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-1/3">Alamat Asal</span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium text-right w-2/3">Jl. Bantaran Sungai Ciliwung No. 45, RT 02/RW 04, Kampung Melayu, Jakarta Timur</span>
+</div>
+</div>
+</div>
+<!-- Middle Column: Condition & Evacuation (Col span 5) -->
+<div class="lg:col-span-5 flex flex-col gap-lg">
+<!-- 2. Current Condition -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md flex flex-col gap-md relative overflow-hidden">
+<!-- AI Insight Sparkle -->
+<div class="absolute top-md right-md text-primary-container opacity-80">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-xs pr-lg">Kondisi Terkini</h3>
+<div class="flex items-center gap-md">
+<span class="px-md py-sm rounded-full bg-error-container/20 text-error font-label-md text-label-md border border-error-container flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+                                Darurat (Perlu Penanganan Medis)
+                            </span>
+</div>
+<div class="grid grid-cols-1 gap-sm mt-xs">
+<div class="bg-surface-container rounded-lg p-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Riwayat Medis</p>
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-error">medical_services</span>
+                                    Hipertensi, Asma Ringan
+                                </p>
+</div>
+<div class="bg-surface-container rounded-lg p-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Kebutuhan Spesifik</p>
+<ul class="list-disc list-inside font-body-sm text-body-sm text-on-surface">
+<li>Obat Amlodipine 5mg</li>
+<li>Inhaler Asma (Salbutamol)</li>
+<li>Pakaian Hangat (Ukuran L)</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- 3. Evacuation Info -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-md flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-xs">Info Evakuasi</h3>
+<div class="flex flex-col gap-md">
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary shrink-0 mt-xs">
+<span class="material-symbols-outlined">shelves</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Posko Pengungsian Saat Ini</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">Posko Utama GOR Jatinegara</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tenda B, Zona Lansia &amp; Medis</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant shrink-0 mt-xs">
+<span class="material-symbols-outlined">login</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Waktu Masuk (Check-in)</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">12 Nov 2024, 14:30 WIB</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dievakuasi oleh Tim SAR Regu 3</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Timeline (Col span 3) -->
+<div class="lg:col-span-3 bg-surface-container-lowest rounded-xl border border-outline-variant p-md flex flex-col h-full">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-xs mb-md">Timeline Log</h3>
+<div class="flex-1 overflow-y-auto pr-sm relative">
+<!-- Timeline Line -->
+<div class="absolute left-4 top-2 bottom-2 w-px bg-outline-variant"></div>
+<!-- Timeline Item 1 -->
+<div class="relative pl-10 pb-md">
+<div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-tertiary-container border-2 border-surface flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary-container font-bold" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="bg-surface-container rounded-lg p-sm shadow-sm">
+<p class="font-label-sm text-label-sm text-tertiary font-bold">Terima Bantuan Medis</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-xs">Pengecekan tensi darah (150/90) dan pemberian obat Amlodipine.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 13 Nov, 08:00 WIB
+                                </p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-10 pb-md">
+<div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-primary border-2 border-surface flex items-center justify-center z-10">
+</div>
+<div class="bg-surface-container rounded-lg p-sm">
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Distribusi Logistik Dasar</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-xs">Menerima paket makanan siap saji dan air minum 1.5L.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12 Nov, 18:30 WIB
+                                </p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-10 pb-md">
+<div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-secondary-container border-2 border-surface flex items-center justify-center z-10">
+</div>
+<div class="bg-surface-container rounded-lg p-sm border-l-2 border-secondary-container">
+<p class="font-label-sm text-label-sm text-on-surface font-bold">Check-in Posko GOR</p>
+<p class="font-body-sm text-body-sm text-on-surface mt-xs">Tiba di Posko GOR Jatinegara. Status kesehatan awal: Lelah, tensi tinggi.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12 Nov, 14:30 WIB
+                                </p>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="relative pl-10">
+<div class="absolute left-2 top-1 w-4 h-4 rounded-full bg-outline border-2 border-surface flex items-center justify-center z-10">
+</div>
+<div class="p-sm">
+<p class="font-label-sm text-label-sm text-on-surface-variant font-bold">Proses Evakuasi</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Dievakuasi dari Jl. Bantaran Sungai Ciliwung.</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12 Nov, 13:00 WIB
+                                </p>
+</div>
+</div>
+</div>
+<button class="mt-md w-full py-sm text-center font-label-md text-label-md text-primary hover:bg-primary-container/10 rounded-lg transition-colors border border-outline-variant border-dashed">
+                        Lihat Semua Log
+                    </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-md flex flex-col sm:flex-row justify-between items-center px-lg gap-sm mt-auto">
+<div class="font-label-md text-label-md font-bold text-on-surface">SIGABAN</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-center sm:text-left">
+                © 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir
+            </div>
+<div class="flex gap-md font-label-sm text-label-sm">
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Contact Emergency</a>
+</div>
+</footer>
+</div>
+</body></html>
