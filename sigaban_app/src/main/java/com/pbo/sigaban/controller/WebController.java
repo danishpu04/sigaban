@@ -1,7 +1,11 @@
 package com.pbo.sigaban.controller;
 
 import com.pbo.sigaban.model.Warga;
+import com.pbo.sigaban.model.Inventaris;
+import com.pbo.sigaban.model.LogBantuan;
 import com.pbo.sigaban.repository.WargaRepository;
+import com.pbo.sigaban.repository.InventarisRepository;
+import com.pbo.sigaban.repository.LogBantuanRepository;
 import com.pbo.sigaban.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +29,12 @@ public class WebController {
 
     @Autowired
     private WargaRepository wargaRepository;
+
+    @Autowired
+    private InventarisRepository inventarisRepository;
+
+    @Autowired
+    private LogBantuanRepository logBantuanRepository;
 
     @GetMapping("/")
     public String landingPage(Model model) {
@@ -103,6 +113,14 @@ public class WebController {
         model.addAttribute("wilayahTerdampak", wilayahTerdampak);
         model.addAttribute("laporanWarga", laporanWarga);
         
+        // Bantuan Metrics
+        List<Inventaris> inventarisList = inventarisRepository.findAll();
+        int totalItemMasuk = inventarisList.stream().mapToInt(Inventaris::getJumlah).sum();
+        long logKeluar = logBantuanRepository.findByTipeOrderByWaktuDesc("KELUAR").size();
+        
+        model.addAttribute("totalItemMasuk", totalItemMasuk);
+        model.addAttribute("logKeluar", logKeluar);
+        
         model.addAttribute("pctJaktim", pctJaktim);
         model.addAttribute("pctJaksel", pctJaksel);
         model.addAttribute("pctJakut", pctJakut);
@@ -178,8 +196,90 @@ public class WebController {
     }
 
     @GetMapping("/bantuan")
-    public String bantuan() {
+    public String bantuan(Model model) {
+        // Initialize Inventaris if empty
+        if (inventarisRepository.count() == 0) {
+            inventarisRepository.save(new Inventaris("Beras", 0, "Kg", "Low Stock"));
+            inventarisRepository.save(new Inventaris("Air Bersih", 0, "Liter", "Low Stock"));
+            inventarisRepository.save(new Inventaris("Obat-obatan", 0, "Paket", "Low Stock"));
+            inventarisRepository.save(new Inventaris("Selimut", 0, "Helai", "Low Stock"));
+        }
+
+        List<Inventaris> inventarisList = inventarisRepository.findAll();
+        List<LogBantuan> logMasuk = logBantuanRepository.findByTipeOrderByWaktuDesc("MASUK");
+        List<LogBantuan> logKeluar = logBantuanRepository.findByTipeOrderByWaktuDesc("KELUAR");
+
+        // Put inventaris into map for easier access in view
+        for (Inventaris inv : inventarisList) {
+            model.addAttribute("inv_" + inv.getNamaItem().replaceAll("\\s+", "").replace("-", ""), inv);
+        }
+
+        model.addAttribute("logMasuk", logMasuk);
+        model.addAttribute("logKeluar", logKeluar);
+
         return "bantuan";
+    }
+
+    @GetMapping("/form-bantuan")
+    public String formBantuan(Model model) {
+        model.addAttribute("logBantuan", new LogBantuan());
+        
+        // Pass current inventaris so user can update them
+        List<Inventaris> inventarisList = inventarisRepository.findAll();
+        for (Inventaris inv : inventarisList) {
+            model.addAttribute("inv_" + inv.getNamaItem().replaceAll("\\s+", "").replace("-", ""), inv);
+        }
+
+        return "form_bantuan";
+    }
+
+    @PostMapping("/form-bantuan")
+    public String saveBantuan(@ModelAttribute LogBantuan logBantuan,
+                              @RequestParam(value = "berasQty", required = false) Integer berasQty,
+                              @RequestParam(value = "airQty", required = false) Integer airQty,
+                              @RequestParam(value = "obatQty", required = false) Integer obatQty,
+                              @RequestParam(value = "selimutQty", required = false) Integer selimutQty) {
+        
+        // Auto-generate description
+        StringBuilder desc = new StringBuilder();
+        if (berasQty != null && berasQty > 0) desc.append(berasQty).append(" Kg Beras, ");
+        if (airQty != null && airQty > 0) desc.append(airQty).append(" Liter Air, ");
+        if (obatQty != null && obatQty > 0) desc.append(obatQty).append(" Paket Obat, ");
+        if (selimutQty != null && selimutQty > 0) desc.append(selimutQty).append(" Helai Selimut, ");
+        
+        String finalDesc = desc.toString();
+        if (finalDesc.endsWith(", ")) {
+            finalDesc = finalDesc.substring(0, finalDesc.length() - 2);
+        }
+        if (finalDesc.isEmpty()) {
+            finalDesc = "Tidak ada spesifikasi barang";
+        }
+        logBantuan.setDeskripsiItem(finalDesc);
+
+        logBantuanRepository.save(logBantuan);
+
+        // Update Inventaris automatically based on transaction type
+        updateInventaris("Beras", berasQty, logBantuan.getTipe());
+        updateInventaris("Air Bersih", airQty, logBantuan.getTipe());
+        updateInventaris("Obat-obatan", obatQty, logBantuan.getTipe());
+        updateInventaris("Selimut", selimutQty, logBantuan.getTipe());
+
+        return "redirect:/bantuan?success=true";
+    }
+
+    private void updateInventaris(String namaItem, Integer qty, String tipe) {
+        if (qty != null && qty > 0) {
+            inventarisRepository.findByNamaItem(namaItem).ifPresent(inv -> {
+                int currentQty = inv.getJumlah();
+                if ("MASUK".equals(tipe)) {
+                    inv.setJumlah(currentQty + qty);
+                } else if ("KELUAR".equals(tipe)) {
+                    inv.setJumlah(Math.max(0, currentQty - qty));
+                }
+                inv.setStatusKondisi(inv.getJumlah() > 100 ? "Sufficient" : "Low Stock");
+                inventarisRepository.save(inv);
+            });
+        }
     }
 
     @GetMapping("/posko")

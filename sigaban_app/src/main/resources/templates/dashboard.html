@@ -346,24 +346,26 @@
 <!-- Stat Card 4 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-between hover:shadow-md transition-shadow">
 <div class="flex items-center justify-between mb-sm">
-<span class="font-label-sm text-label-sm text-on-surface-variant">Bantuan Masuk</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Stok Inventaris</span>
 <span class="material-symbols-outlined text-outline">inventory_2</span>
 </div>
 <div class="flex items-baseline gap-xs">
-<span class="font-headline-md text-headline-md font-bold text-on-surface">Rp 2.4B</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface"><span th:text="${totalItemMasuk != null ? totalItemMasuk : 0}">0</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Item</span>
 </div>
 </div>
 <!-- Stat Card 5 -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col justify-between hover:shadow-md transition-shadow">
 <div class="flex items-center justify-between mb-sm">
-<span class="font-label-sm text-label-sm text-on-surface-variant">Bantuan Tersalurkan</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Aktivitas Distribusi</span>
 <span class="material-symbols-outlined text-outline">local_shipping</span>
 </div>
 <div class="flex items-baseline gap-xs mb-xs">
-<span class="font-headline-lg text-headline-lg font-bold text-on-surface">85%</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface"><span th:text="${logKeluar != null ? logKeluar : 0}">0</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Log</span>
 </div>
 <div class="w-full bg-surface-container-highest rounded-full h-1.5">
-<div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
+<div class="bg-primary h-1.5 rounded-full" style="width: 100%"></div>
 </div>
 </div>
 </div>
