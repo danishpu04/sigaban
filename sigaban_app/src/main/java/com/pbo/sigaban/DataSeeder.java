@@ -15,11 +15,14 @@ public class DataSeeder implements CommandLineRunner {
     @Autowired
     private com.pbo.sigaban.repository.WargaRepository wargaRepository;
 
+    @Autowired
+    private com.pbo.sigaban.repository.PoskoRepository poskoRepository;
+
     @Override
     public void run(String... args) throws Exception {
         // Seed default admin user if not exists
         if (userRepository.count() == 0) {
-            User admin = new User("admin", "admin123", "Administrator", "ADMIN");
+            User admin = new User("admin", "admin123", "Administrator", "ADMIN", "admin@sigaban.gov", "081234567890");
             userRepository.save(admin);
             
             System.out.println("=========================================================");
@@ -53,5 +56,24 @@ public class DataSeeder implements CommandLineRunner {
 
             System.out.println("Default Warga Data Seeded.");
         }
+
+        // Seed Poskos
+        String[][] poskoData = {
+            {"Posko GOR Jakarta Utara", "Jl. Yos Sudarso No.22", "500", "Aman", "0812-3456-7890"},
+            {"Balai Warga RW 04", "Kel. Pluit, Penjaringan", "200", "Menipis", "0812-9876-5432"},
+            {"SDN 01 Kapuk Muara", "Jl. Kapuk Raya", "300", "Kosong", "0855-1122-3344"},
+            {"GOR Jatinegara", "Jl. Jatinegara Timur", "400", "Aman", "0811-2233-4455"},
+            {"Posko Utama Balai Kota", "Jl. Medan Merdeka Selatan", "1000", "Aman", "021-1234567"},
+            {"Posko Pengungsian SMPN 10", "Alamat Belum Tersedia", "350", "Aman", "-"},
+            {"SDN 01 Jakarta", "Alamat Belum Tersedia", "250", "Aman", "-"},
+            {"Posko Balai Desa", "Alamat Belum Tersedia", "150", "Aman", "-"}
+        };
+
+        for (String[] p : poskoData) {
+            if (poskoRepository.findByNama(p[0]).isEmpty()) {
+                poskoRepository.save(new com.pbo.sigaban.model.Posko(p[0], p[1], Integer.parseInt(p[2]), p[3], p[4]));
+            }
+        }
+        System.out.println("Posko Data Seeded/Checked.");
     }
 }

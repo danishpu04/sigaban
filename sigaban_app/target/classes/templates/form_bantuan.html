@@ -108,12 +108,6 @@
                 <span class="text-sm font-medium">AI Insight</span>
             </a>
         </li>
-        <li>
-            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/laporan">
-                <span class="material-symbols-outlined mr-3">assessment</span>
-                <span class="text-sm font-medium">Reports</span>
-            </a>
-        </li>
         <li class="mt-auto pt-8 border-t border-outline-variant">
             <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
                 <span class="material-symbols-outlined mr-3">settings</span>
@@ -179,12 +173,12 @@
                             <label class="text-sm font-medium text-on-surface-variant mb-2 block">Jenis Aktivitas <span class="text-error">*</span></label>
                             <div class="flex gap-4">
                                 <label class="flex-1 flex items-center gap-3 p-3 border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-low border-primary">
-                                    <input class="text-primary focus:ring-primary" th:field="*{tipe}" type="radio" value="MASUK" required/>
+                                    <input class="text-primary focus:ring-primary" th:field="*{tipe}" type="radio" value="MASUK" onchange="togglePihakTerkait()" required/>
                                     <span class="text-sm font-medium text-on-surface flex-1">Bantuan Masuk</span>
                                     <span class="material-symbols-outlined text-primary">download</span>
                                 </label>
                                 <label class="flex-1 flex items-center gap-3 p-3 border border-outline-variant rounded-md cursor-pointer hover:bg-surface-container-low transition-colors">
-                                    <input class="text-secondary focus:ring-secondary" th:field="*{tipe}" type="radio" value="KELUAR" required/>
+                                    <input class="text-secondary focus:ring-secondary" th:field="*{tipe}" type="radio" value="KELUAR" onchange="togglePihakTerkait()" required/>
                                     <span class="text-sm font-medium text-on-surface flex-1">Distribusi Keluar</span>
                                     <span class="material-symbols-outlined text-secondary">local_shipping</span>
                                 </label>
@@ -194,13 +188,17 @@
                         <!-- Pihak Terkait -->
                         <div class="col-span-1">
                             <label class="text-sm font-medium text-on-surface-variant mb-1 block">Pihak Terkait (Donatur / Tujuan)</label>
-                            <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{pihakTerkait}" placeholder="Contoh: BNPB, Warga RW 04" type="text" required/>
+                            <input id="pihakTerkaitInput" name="pihakTerkait" th:value="${logBantuan.pihakTerkait}" class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Contoh: BNPB, Warga RW 04" type="text" required/>
+                            <select id="pihakTerkaitSelect" class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all hidden" disabled>
+                                <option value="" disabled selected>Pilih Posko Tujuan</option>
+                                <option th:each="posko : ${poskoList}" th:value="${posko}" th:text="${posko}"></option>
+                            </select>
                         </div>
 
                         <!-- Kategori Pihak -->
                         <div class="col-span-1">
                             <label class="text-sm font-medium text-on-surface-variant mb-1 block">Kategori Instansi</label>
-                            <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{labelPihak}" placeholder="Contoh: Gov Agency, NGO" type="text" required/>
+                            <input id="labelPihakInput" class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{labelPihak}" placeholder="Contoh: Gov Agency, NGO" type="text" required/>
                         </div>
 
 
@@ -278,4 +276,48 @@
 </div>
 
 </body>
+
+<script>
+    function togglePihakTerkait() {
+        // Thymeleaf generates ids like 'tipe1' and 'tipe2' for th:field on radio inputs
+        const tipeKeluar = document.getElementById('tipe2');
+        const inputText = document.getElementById('pihakTerkaitInput');
+        const selectDropdown = document.getElementById('pihakTerkaitSelect');
+        const labelPihak = document.getElementById('labelPihakInput');
+
+        if (tipeKeluar && tipeKeluar.checked) {
+            // Show Dropdown
+            inputText.classList.add('hidden');
+            inputText.removeAttribute('name');
+            inputText.required = false;
+
+            selectDropdown.classList.remove('hidden');
+            selectDropdown.setAttribute('name', 'pihakTerkait');
+            selectDropdown.required = true;
+            selectDropdown.disabled = false;
+            
+            // Auto fill Kategori Instansi to 'Evacuation Center'
+            if(labelPihak) labelPihak.value = 'Evacuation Center';
+        } else {
+            // Show Input Text
+            selectDropdown.classList.add('hidden');
+            selectDropdown.removeAttribute('name');
+            selectDropdown.required = false;
+            selectDropdown.disabled = true;
+
+            inputText.classList.remove('hidden');
+            inputText.setAttribute('name', 'pihakTerkait');
+            inputText.required = true;
+            
+            if(labelPihak && labelPihak.value === 'Evacuation Center') {
+                labelPihak.value = '';
+            }
+        }
+    }
+    
+    // Call once on load to set initial state
+    window.onload = function() {
+        togglePihakTerkait();
+    };
+</script>
 </html>

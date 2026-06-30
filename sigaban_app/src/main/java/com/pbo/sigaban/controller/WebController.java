@@ -3,9 +3,11 @@ package com.pbo.sigaban.controller;
 import com.pbo.sigaban.model.Warga;
 import com.pbo.sigaban.model.Inventaris;
 import com.pbo.sigaban.model.LogBantuan;
+import com.pbo.sigaban.model.Posko;
 import com.pbo.sigaban.repository.WargaRepository;
 import com.pbo.sigaban.repository.InventarisRepository;
 import com.pbo.sigaban.repository.LogBantuanRepository;
+import com.pbo.sigaban.repository.PoskoRepository;
 import com.pbo.sigaban.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,17 +17,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import jakarta.servlet.http.HttpSession;
+import com.pbo.sigaban.model.User;
+import com.pbo.sigaban.repository.UserRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class WebController {
 
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private WargaRepository wargaRepository;
@@ -36,6 +45,9 @@ public class WebController {
     @Autowired
     private LogBantuanRepository logBantuanRepository;
 
+    @Autowired
+    private PoskoRepository poskoRepository;
+
     @GetMapping("/")
     public String landingPage(Model model) {
         List<Warga> listWarga = wargaRepository.findAll();
@@ -45,12 +57,8 @@ public class WebController {
                 .mapToInt(w -> (w.getFamily() != null ? w.getFamily() : 0) + 1)
                 .sum();
                 
-        // Calculate active shelters (unique non-empty evac points)
-        long activeShelters = listWarga.stream()
-                .map(Warga::getEvacPoint)
-                .filter(ep -> ep != null && !ep.trim().isEmpty())
-                .distinct()
-                .count();
+        // Calculate active shelters
+        long activeShelters = poskoRepository.count();
                 
         // Calculate dynamic logistics percentage
         long logisticPercentage = Math.min(98, Math.max(70, 70 + activeShelters * 5));
@@ -70,8 +78,11 @@ public class WebController {
     @PostMapping("/login")
     public String processLogin(@RequestParam("username") String username, 
                                @RequestParam("password") String password,
+                               HttpSession session,
                                Model model) {
-        if (authService.authenticate(username, password)) {
+        User user = authService.authenticate(username, password);
+        if (user != null) {
+            session.setAttribute("loggedInUserId", user.getId());
             return "redirect:/dashboard";
         } else {
             model.addAttribute("error", "Username atau password salah!");
@@ -79,10 +90,17 @@ public class WebController {
         }
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        Long totalWarga = wargaRepository.count();
-        Long jumlahKeluarga = wargaRepository.sumFamily();
+        Long jumlahKeluarga = wargaRepository.count();
+        Long sumFamily = wargaRepository.sumFamily();
+        Long totalWarga = jumlahKeluarga + (sumFamily != null ? sumFamily : 0);
         Long wilayahTerdampak = wargaRepository.countDistinctEvacPoint();
         List<Warga> laporanWarga = wargaRepository.findTop3ByOrderByIdDesc();
 
@@ -164,11 +182,64 @@ public class WebController {
     public String formWarga(Model model, @RequestParam(value = "source", required = false) String source) {
         model.addAttribute("warga", new Warga());
         model.addAttribute("source", source);
+        List<Posko> poskoList = poskoRepository.findAll();
+        for (Posko p : poskoList) {
+            long count = wargaRepository.sumOrangByEvacPoint(p.getNama());
+            p.setKapasitasSaatIni((int) count);
+            double ratio = p.getKapasitasMaksimal() > 0 ? (double) count / p.getKapasitasMaksimal() : 1.0;
+            if (ratio >= 1.0) {
+                p.setStatusKepenuhan("Penuh");
+            } else if (ratio >= 0.8) {
+                p.setStatusKepenuhan("Hampir Penuh");
+            } else {
+                p.setStatusKepenuhan("Tersedia");
+            }
+        }
+        model.addAttribute("poskoList", poskoList);
         return "form_warga";
     }
 
     @PostMapping("/form-warga")
-    public String saveWarga(@ModelAttribute Warga warga, @RequestParam(value = "source", required = false) String source) {
+    public String saveWarga(@ModelAttribute Warga warga, @RequestParam(value = "source", required = false) String source, Model model) {
+        // Validasi Kapasitas Posko
+        java.util.Optional<Posko> optionalPosko = poskoRepository.findByNama(warga.getEvacPoint());
+        if (optionalPosko.isPresent()) {
+            Posko posko = optionalPosko.get();
+            long count = wargaRepository.sumOrangByEvacPoint(posko.getNama());
+            long additional = (warga.getFamily() != null ? warga.getFamily() : 0) + 1;
+            
+            if (warga.getId() != null) {
+                Warga oldWarga = wargaRepository.findById(warga.getId()).orElse(null);
+                if (oldWarga != null && oldWarga.getEvacPoint().equals(posko.getNama())) {
+                    long oldCount = (oldWarga.getFamily() != null ? oldWarga.getFamily() : 0) + 1;
+                    count -= oldCount;
+                }
+            }
+            
+            if (count + additional > posko.getKapasitasMaksimal()) {
+                model.addAttribute("error", "posko_full");
+                model.addAttribute("warga", warga);
+                model.addAttribute("source", source);
+                
+                // Reload poskoList
+                List<Posko> poskoList = poskoRepository.findAll();
+                for (Posko p : poskoList) {
+                    long pCount = wargaRepository.sumOrangByEvacPoint(p.getNama());
+                    p.setKapasitasSaatIni((int) pCount);
+                    double ratio = p.getKapasitasMaksimal() > 0 ? (double) pCount / p.getKapasitasMaksimal() : 1.0;
+                    if (ratio >= 1.0) {
+                        p.setStatusKepenuhan("Penuh");
+                    } else if (ratio >= 0.8) {
+                        p.setStatusKepenuhan("Hampir Penuh");
+                    } else {
+                        p.setStatusKepenuhan("Tersedia");
+                    }
+                }
+                model.addAttribute("poskoList", poskoList);
+                return "form_warga";
+            }
+        }
+
         wargaRepository.save(warga);
         
         // Redirect to Data Warga if it's admin (from source param)
@@ -185,6 +256,20 @@ public class WebController {
         Warga warga = wargaRepository.findById(id).orElse(new Warga());
         model.addAttribute("warga", warga);
         model.addAttribute("source", source);
+        List<Posko> poskoList = poskoRepository.findAll();
+        for (Posko p : poskoList) {
+            long count = wargaRepository.sumOrangByEvacPoint(p.getNama());
+            p.setKapasitasSaatIni((int) count);
+            double ratio = p.getKapasitasMaksimal() > 0 ? (double) count / p.getKapasitasMaksimal() : 1.0;
+            if (ratio >= 1.0) {
+                p.setStatusKepenuhan("Penuh");
+            } else if (ratio >= 0.8) {
+                p.setStatusKepenuhan("Hampir Penuh");
+            } else {
+                p.setStatusKepenuhan("Tersedia");
+            }
+        }
+        model.addAttribute("poskoList", poskoList);
         // By default we assume editing is done by admins
         return "form_warga";
     }
@@ -229,6 +314,13 @@ public class WebController {
         for (Inventaris inv : inventarisList) {
             model.addAttribute("inv_" + inv.getNamaItem().replaceAll("\\s+", "").replace("-", ""), inv);
         }
+
+        // Fetch distinct poskos from repository
+        List<String> poskoList = poskoRepository.findAll().stream()
+                .map(Posko::getNama)
+                .sorted()
+                .collect(Collectors.toList());
+        model.addAttribute("poskoList", poskoList);
 
         return "form_bantuan";
     }
@@ -283,8 +375,58 @@ public class WebController {
     }
 
     @GetMapping("/posko")
-    public String posko() {
+    public String posko(Model model) {
+        List<Posko> poskoList = poskoRepository.findAll();
+        for (Posko p : poskoList) {
+            long count = wargaRepository.sumOrangByEvacPoint(p.getNama());
+            p.setKapasitasSaatIni((int) count);
+            double ratio = p.getKapasitasMaksimal() > 0 ? (double) count / p.getKapasitasMaksimal() : 1.0;
+            if (ratio >= 1.0) {
+                p.setStatusKepenuhan("Penuh");
+                p.setPersentase(100);
+            } else if (ratio >= 0.8) {
+                p.setStatusKepenuhan("Hampir Penuh");
+                p.setPersentase((int) (ratio * 100));
+            } else {
+                p.setStatusKepenuhan("Tersedia");
+                p.setPersentase((int) (ratio * 100));
+            }
+        }
+        model.addAttribute("poskoList", poskoList);
         return "posko";
+    }
+
+    @GetMapping("/form-posko")
+    public String formPosko(Model model) {
+        model.addAttribute("posko", new Posko());
+        return "form_posko";
+    }
+
+    @PostMapping("/form-posko")
+    public String savePosko(@ModelAttribute Posko posko) {
+        poskoRepository.save(posko);
+        return "redirect:/posko?success=true";
+    }
+
+    @GetMapping("/edit-posko/{id}")
+    public String editPosko(@PathVariable Long id, Model model) {
+        Posko posko = poskoRepository.findById(id).orElse(new Posko());
+        model.addAttribute("posko", posko);
+        return "form_posko";
+    }
+
+    @GetMapping("/delete-posko/{id}")
+    public String deletePosko(@PathVariable Long id) {
+        java.util.Optional<Posko> optionalPosko = poskoRepository.findById(id);
+        if (optionalPosko.isPresent()) {
+            Posko posko = optionalPosko.get();
+            long count = wargaRepository.sumOrangByEvacPoint(posko.getNama());
+            if (count > 0) {
+                return "redirect:/posko?error=has_warga";
+            }
+            poskoRepository.deleteById(id);
+        }
+        return "redirect:/posko?success=deleted";
     }
 
     @GetMapping("/ai-insight")
@@ -298,7 +440,50 @@ public class WebController {
     }
 
     @GetMapping("/pengaturan")
-    public String pengaturan() {
+    public String pengaturan(HttpSession session, Model model) {
+        Long loggedInUserId = (Long) session.getAttribute("loggedInUserId");
+        if (loggedInUserId == null) {
+            return "redirect:/login";
+        }
+        User currentUser = userRepository.findById(loggedInUserId).orElse(null);
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("users", userRepository.findAll());
         return "pengaturan";
+    }
+
+    @PostMapping("/update-account")
+    public String updateAccount(@ModelAttribute User updatedUser, HttpSession session) {
+        Long loggedInUserId = (Long) session.getAttribute("loggedInUserId");
+        if (loggedInUserId != null) {
+            User existing = userRepository.findById(loggedInUserId).orElse(null);
+            if (existing != null) {
+                existing.setFullName(updatedUser.getFullName());
+                existing.setEmail(updatedUser.getEmail());
+                existing.setPhone(updatedUser.getPhone());
+                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                    existing.setPassword(updatedUser.getPassword());
+                }
+                userRepository.save(existing);
+            }
+        }
+        return "redirect:/pengaturan?success=account";
+    }
+
+    @PostMapping("/add-user")
+    public String addUser(@ModelAttribute User newUser) {
+        userRepository.save(newUser);
+        return "redirect:/pengaturan?success=adduser";
+    }
+
+    @GetMapping("/delete-user/{id}")
+    public String deleteUser(@PathVariable Long id, HttpSession session) {
+        Long loggedInUserId = (Long) session.getAttribute("loggedInUserId");
+        if (loggedInUserId != null && !loggedInUserId.equals(id)) {
+            userRepository.deleteById(id);
+        }
+        return "redirect:/pengaturan?success=deleteuser";
     }
 }

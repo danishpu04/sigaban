@@ -18,15 +18,19 @@ public class User {
     private String password;
     private String fullName;
     private String role;
+    private String email;
+    private String phone;
 
     public User() {
     }
 
-    public User(String username, String password, String fullName, String role) {
+    public User(String username, String password, String fullName, String role, String email, String phone) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.role = role;
+        this.email = email;
+        this.phone = phone;
     }
 
     // Getters and Setters
@@ -68,5 +72,21 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

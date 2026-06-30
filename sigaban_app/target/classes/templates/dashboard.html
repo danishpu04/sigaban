@@ -215,7 +215,7 @@
         }
 	</style>
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen">
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
 <!-- SideNavBar -->
 <nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant flex flex-col h-full py-md z-50">
 <div class="px-md pb-lg">
@@ -253,12 +253,6 @@
 <span class="font-label-md text-label-md">AI Insight</span>
 </a>
 </li>
-<li>
-<a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/laporan">
-<span class="material-symbols-outlined mr-md">assessment</span>
-<span class="font-label-md text-label-md">Reports</span>
-</a>
-</li>
 <li class="mt-auto pt-lg border-t border-outline-variant">
 <a class="flex items-center px-md py-sm text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
 <span class="material-symbols-outlined mr-md">settings</span>
@@ -291,7 +285,7 @@
 </div>
 </header>
 <!-- Main Content Canvas -->
-<main class="md:ml-64 p-lg max-w-7xl mx-auto space-y-lg pb-xl">
+<main class="md:ml-64 p-lg max-w-7xl mx-auto space-y-lg pb-xl flex-1 w-full md:w-[calc(100%-16rem)]">
 <!-- Header Section -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-lg gap-md">
 <div>
@@ -373,44 +367,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
 <!-- Left Column: Charts -->
 <div class="lg:col-span-2 space-y-lg">
-<!-- Line Chart Card -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col">
-<div class="flex justify-between items-center mb-md">
-<h3 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Water Level Trends</h3>
-<div class="flex gap-sm">
-<span class="font-label-sm text-label-sm px-sm py-xs bg-surface-container rounded-md text-on-surface-variant cursor-pointer hover:bg-surface-container-high">24H</span>
-<span class="font-label-sm text-label-sm px-sm py-xs bg-primary-container/10 text-primary rounded-md cursor-pointer font-bold">7D</span>
-</div>
-</div>
-<!-- Chart Placeholder -->
-<div class="relative w-full h-64 bg-surface-bright rounded-lg overflow-hidden flex items-end justify-between px-md pb-md pt-lg border-b border-l border-outline-variant/30">
-<!-- Abstract Line Chart Visualization -->
-<div class="absolute bottom-0 left-0 w-full h-full">
-<svg class="w-full h-full opacity-20 text-primary fill-current" preserveaspectratio="none" viewbox="0 0 100 100">
-<path d="M0,100 L0,50 Q25,30 50,60 T100,20 L100,100 Z"></path>
-</svg>
-<svg class="w-full h-full opacity-60 text-primary stroke-current" fill="none" preserveaspectratio="none" stroke-width="2" viewbox="0 0 100 100">
-<path d="M0,50 Q25,30 50,60 T100,20"></path>
-</svg>
-</div>
-<!-- Grid Lines -->
-<div class="absolute inset-0 flex flex-col justify-between py-md pointer-events-none">
-<div class="border-b border-outline-variant/20 w-full h-0"></div>
-<div class="border-b border-outline-variant/20 w-full h-0"></div>
-<div class="border-b border-outline-variant/20 w-full h-0"></div>
-<div class="border-b border-outline-variant/20 w-full h-0"></div>
-</div>
-<!-- Data Points -->
-<div class="relative z-10 w-2 h-2 bg-primary rounded-full mb-[48%] shadow-sm"></div>
-<div class="relative z-10 w-2 h-2 bg-primary rounded-full mb-[68%] shadow-sm"></div>
-<div class="relative z-10 w-2 h-2 bg-primary rounded-full mb-[38%] shadow-sm"></div>
-<div class="relative z-10 w-2 h-2 bg-primary rounded-full mb-[58%] shadow-sm"></div>
-<div class="relative z-10 w-2 h-2 bg-primary rounded-full mb-[18%] shadow-sm ring-4 ring-primary/20"></div>
-</div>
-<div class="flex justify-between mt-sm px-sm font-label-sm text-label-sm text-outline">
-<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Today</span>
-</div>
-</div>
+
 <!-- Bar Chart Card -->
 <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex flex-col">
 <div class="flex justify-between items-center mb-md">
@@ -423,14 +380,14 @@
 <div class="w-full h-48 flex items-end justify-around gap-sm px-sm border-b border-outline-variant/30 pb-xs">
 <div th:style="'height: ' + ${pctJaktim} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJaktim} + '%'">0%</div></div>
 <div th:style="'height: ' + ${pctJaksel} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJaksel} + '%'">0%</div></div>
-<div th:style="'height: ' + ${pctJakut} + '%'" class="w-full bg-primary rounded-t-md relative group cursor-pointer shadow-sm"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant text-primary font-bold" th:text="${pctJakut} + '%'">0%</div></div>
+<div th:style="'height: ' + ${pctJakut} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJakut} + '%'">0%</div></div>
 <div th:style="'height: ' + ${pctJakbar} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctJakbar} + '%'">0%</div></div>
 <div th:style="'height: ' + ${pctPusat} + '%'" class="w-full bg-primary/20 rounded-t-md relative group cursor-pointer hover:bg-primary/40 transition-colors"><div class="absolute -top-6 left-1/2 -translate-x-1/2 font-label-sm text-label-sm hidden group-hover:block bg-surface shadow-sm px-xs py-[2px] rounded border border-outline-variant" th:text="${pctPusat} + '%'">0%</div></div>
 </div>
 <div class="flex justify-around mt-sm font-label-sm text-label-sm text-outline truncate">
 <span class="truncate w-12 text-center">Jaktim</span>
 <span class="truncate w-12 text-center">Jaksel</span>
-<span class="truncate w-12 text-center text-on-surface font-bold">Jakut</span>
+<span class="truncate w-12 text-center">Jakut</span>
 <span class="truncate w-12 text-center">Jakbar</span>
 <span class="truncate w-12 text-center">Pusat</span>
 </div>
@@ -477,7 +434,7 @@
 </div>
 </main>
 <!-- Footer -->
-<footer class="w-[calc(100%-16rem)] py-md ml-64 border-t border-outline-variant bg-surface-container-lowest flex flex-row justify-between items-center px-lg hidden md:flex">
+<footer class="w-[calc(100%-16rem)] py-md ml-64 border-t border-outline-variant bg-surface-container-lowest flex flex-row justify-between items-center px-lg hidden md:flex mt-auto">
 <div>
 <span class="font-label-md text-label-md font-bold text-on-surface">SIGABAN</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant ml-sm">© 2024 SIGABAN v2.1.0 - Sistem Informasi Warga Terdampak Banjir</span>

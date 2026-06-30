@@ -13,16 +13,16 @@ public class AuthService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean authenticate(String username, String password) {
+    public User authenticate(String username, String password) {
         Optional<User> userOptional = userRepository.findByUsername(username);
         
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            // In a real application, you should hash the password using BCrypt and compare hashes
-            // For PBO project simplicity, we'll use plain text comparison
-            return user.getPassword().equals(password);
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
         }
         
-        return false;
+        return null;
     }
 }

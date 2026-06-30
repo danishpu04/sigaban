@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Posko - SIGABAN</title>
+    <!-- Tailwind CSS (via CDN for standalone testing, replace with your build process if needed) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+
+    <!-- Tailwind Config for the requested color palette -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0056B3',
+                        'on-primary': '#FFFFFF',
+                        'primary-container': '#D1E4FF',
+                        'on-primary-container': '#001D36',
+                        secondary: '#4A6289',
+                        'on-secondary': '#FFFFFF',
+                        'secondary-container': '#D1E4FF',
+                        'on-secondary-container': '#001D36',
+                        tertiary: '#2C8E7B',
+                        'on-tertiary': '#FFFFFF',
+                        'tertiary-container': '#A8EFE0',
+                        'on-tertiary-container': '#00201A',
+                        error: '#DC3545',
+                        'on-error': '#FFFFFF',
+                        'error-container': '#F8D7DA',
+                        'on-error-container': '#410002',
+                        background: '#F8F9FA',
+                        'on-background': '#1A1C1E',
+                        surface: '#F8F9FA',
+                        'on-surface': '#1A1C1E',
+                        'surface-variant': '#E1E2E4',
+                        'on-surface-variant': '#44474E',
+                        outline: '#74777F',
+                        'outline-variant': '#C2C6D4',
+                        'surface-container-highest': '#E2E2E2',
+                        'surface-container-high': '#E8E8E8',
+                        'surface-container': '#EEEEEE',
+                        'surface-container-low': '#F4F4F4',
+                        'surface-container-lowest': '#FFFFFF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c2c6d4;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-sans min-h-screen flex">
+    
+<!-- SideNavBar -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant flex flex-col h-full py-4 z-50">
+    <div class="px-4 pb-8">
+        <h1 class="text-2xl font-bold text-primary">SIGABAN</h1>
+        <p class="text-sm text-on-surface-variant">Disaster Mgmt System</p>
+    </div>
+    <ul class="flex flex-col flex-grow w-full space-y-1">
+        <li>
+            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/dashboard">
+                <span class="material-symbols-outlined mr-3">dashboard</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/data-warga">
+                <span class="material-symbols-outlined mr-3">groups</span>
+                <span class="text-sm font-medium">Data Warga</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-4 py-2 text-primary font-bold border-r-4 border-primary bg-primary-container/10 transition-opacity duration-200 opacity-80" href="/bantuan">
+                <span class="material-symbols-outlined mr-3">handshake</span>
+                <span class="text-sm font-medium">Bantuan</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/posko">
+                <span class="material-symbols-outlined mr-3">location_on</span>
+                <span class="text-sm font-medium">Posko</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/ai-insight">
+                <span class="material-symbols-outlined mr-3">psychology</span>
+                <span class="text-sm font-medium">AI Insight</span>
+            </a>
+        </li>
+        <li class="mt-auto pt-8 border-t border-outline-variant">
+            <a class="flex items-center px-4 py-2 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="/pengaturan">
+                <span class="material-symbols-outlined mr-3">settings</span>
+                <span class="text-sm font-medium">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-4 py-2 text-error hover:bg-error/10 transition-colors mt-1" href="/">
+                <span class="material-symbols-outlined mr-3">logout</span>
+                <span class="text-sm font-medium">Logout</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-full ml-64 overflow-y-auto bg-surface relative">
+    
+    <!-- TopNavBar -->
+    <header class="bg-surface border-b border-outline-variant top-0 sticky z-40 flex justify-between items-center w-full px-6 py-3">
+        <div class="flex items-center">
+            <div class="flex items-center bg-surface-container-low rounded-full px-4 py-2 border border-outline-variant focus-within:border-primary transition-colors w-96">
+                <span class="material-symbols-outlined text-on-surface-variant mr-3">search</span>
+                <input class="bg-transparent border-none outline-none text-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Cari data..." type="text"/>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">notifications</span>
+            </button>
+            <button class="text-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">account_circle</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Form Canvas -->
+    <main class="flex-1 p-6 pb-12">
+        <!-- Breadcrumb & Header -->
+        <div class="mb-8 max-w-6xl mx-auto">
+            <a class="inline-flex items-center gap-2 text-outline hover:text-primary transition-colors text-sm mb-2" href="/posko">
+                <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                Kembali ke Manajemen Posko
+            </a>
+            <h2 class="text-3xl font-bold text-on-surface tracking-tight" th:text="${posko.id != null ? 'Edit Posko' : 'Tambah Posko Baru'}">Tambah Posko Baru</h2>
+            <p class="text-base text-on-surface-variant mt-1">Daftarkan lokasi posko atau titik evakuasi baru ke dalam sistem.</p>
+        </div>
+
+        <form action="/form-posko" method="POST" class="max-w-6xl mx-auto grid grid-cols-12 gap-6" th:object="${posko}">
+            <input type="hidden" th:field="*{id}" th:if="${posko.id != null}" />
+            <div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+                <section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+                    <div class="border-b border-surface-container pb-4 mb-6 flex items-center gap-3 text-primary">
+                        <span class="material-symbols-outlined">location_city</span>
+                        <h3 class="text-xl font-semibold text-on-surface">Informasi Posko</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="col-span-1">
+                            <label class="text-sm font-medium text-on-surface-variant mb-1 block">Nama Posko <span class="text-error">*</span></label>
+                            <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{nama}" placeholder="Contoh: Balai Warga RW 04" type="text" required/>
+                        </div>
+
+                        <div class="col-span-1">
+                            <label class="text-sm font-medium text-on-surface-variant mb-1 block">Alamat Lengkap <span class="text-error">*</span></label>
+                            <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{alamat}" placeholder="Contoh: Kel. Pluit, Penjaringan" type="text" required/>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="col-span-1">
+                                <label class="text-sm font-medium text-on-surface-variant mb-1 block">Kapasitas Maksimal (Orang) <span class="text-error">*</span></label>
+                                <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{kapasitasMaksimal}" placeholder="Contoh: 500" type="number" min="1" required/>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="text-sm font-medium text-on-surface-variant mb-1 block">Nomor Telepon Darurat</label>
+                                <input class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{noTelepon}" placeholder="Contoh: 0812-3456-7890" type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="col-span-1">
+                            <label class="text-sm font-medium text-on-surface-variant mb-1 block">Status Logistik Awal</label>
+                            <select class="w-full bg-surface border border-outline-variant rounded-md px-3 py-2 text-sm text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" th:field="*{statusLogistik}">
+                                <option value="Aman">Aman (Cukup)</option>
+                                <option value="Menipis">Menipis</option>
+                                <option value="Kosong">Kosong / Kritis</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-3 border-t border-surface-container pt-6">
+                        <a href="/posko" class="flex-1 bg-surface-container border border-outline-variant text-on-surface hover:bg-surface-container-high transition-colors font-medium text-sm py-2 px-4 rounded-md text-center flex items-center justify-center gap-2">
+                            Batal
+                        </a>
+                        <button type="submit" class="flex-1 bg-primary text-on-primary hover:bg-primary/90 transition-colors font-medium text-sm py-2 px-4 rounded-md flex items-center justify-center gap-2 shadow-sm">
+                            <span class="material-symbols-outlined text-[18px]">save</span> 
+                            <span th:text="${posko.id != null ? 'Update Posko' : 'Simpan Posko'}">Simpan Posko</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </form>
+    </main>
+</div>
+
+</body>
+
+</html>
