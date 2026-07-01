@@ -268,21 +268,10 @@
 </ul>
 </nav>
 <!-- TopNavBar -->
-<header class="hidden md:flex docked top-0 sticky z-40 border-b border-outline-variant bg-surface justify-between items-center px-lg py-sm ml-64 w-[calc(100%-16rem)]">
-<div class="flex items-center">
-    <div class="flex items-center bg-surface-container-low rounded-full px-md py-sm border border-outline-variant focus-within:border-primary transition-colors w-96">
-        <span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
-        <input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full focus:ring-0 placeholder:text-outline py-0" placeholder="Search aid, shelters, or records..." type="text"/>
-    </div>
-</div>
-<div class="flex items-center gap-md">
+<header class="md:hidden flex justify-start items-center w-full px-lg py-sm bg-surface docked full-width top-0 sticky z-40 border-b border-outline-variant">
     <button class="text-on-surface-variant hover:text-primary transition-colors">
-        <span class="material-symbols-outlined">notifications</span>
+        <span class="material-symbols-outlined">menu</span>
     </button>
-    <button class="text-on-surface-variant hover:text-primary transition-colors">
-        <span class="material-symbols-outlined">account_circle</span>
-    </button>
-</div>
 </header>
 <!-- Main Content Canvas -->
 <main class="md:ml-64 p-lg max-w-7xl mx-auto space-y-lg pb-xl flex-1 w-full md:w-[calc(100%-16rem)]">
@@ -445,4 +434,31 @@
 <a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Contact Emergency</a>
 </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.querySelector('input[placeholder*="Search"]');
+        if (searchInput) {
+            searchInput.addEventListener("input", function() {
+                const term = this.value.toLowerCase();
+                
+                // For tables (warga, laporan, etc)
+                const rows = document.querySelectorAll('tbody tr');
+                if (rows.length > 0) {
+                    rows.forEach(row => {
+                        row.style.display = row.textContent.toLowerCase().includes(term) ? "" : "none";
+                    });
+                }
+                
+                // For posko cards or dashboard widgets
+                const cards = document.querySelectorAll('.glass-card');
+                if (cards.length > 0) {
+                    cards.forEach(card => {
+                        card.style.display = card.textContent.toLowerCase().includes(term) ? "" : "none";
+                    });
+                }
+            });
+        }
+    });
+</script>
 </body></html>
